@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.navbar{
+    background-color: rgb(205, 201, 221);
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    padding: 10px;
+
+    
+}
+.navbar2{
+    background-color: rgb(181, 176, 203);
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    padding: 10px;
+    
+    
+}
+.navbar2 .nav_left,.nav_right{
+    background-color: rgb(181, 176, 203);
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 5px;
+    
+}
+.body img{
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 0%;
+    background-repeat: no-repeat;
+}
