@@ -8,6 +8,8 @@ function App() {
   return (
     <>
   <Login/>
+  <br />
+  <br />
   <Footer/>
     </>
   );
