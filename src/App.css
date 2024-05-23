@@ -1,0 +1,146 @@
+*{
+    padding: 0;
+    margin: 0;
+    color: black;
+    background-color:  rgb(185, 205, 204);
+}
+
+.header{
+    padding: 4px;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    position: fixed;
+    width: 100%;
+    background-color: rgb(153, 153, 201);
+    
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: rgb(20, 41, 41);
+    justify-content: center;
+    font-size: larger;
+    text-decoration: none;
+
+    background-color: rgb(153, 153, 201);
+}
+
+.title{
+   
+    background-color: rgb(153, 153, 201);
+    font-size: x-large;
+    font-weight: bold;
+}
+.fa{
+    padding: 5px;
+    margin: 5px;
+    gap: 5px;
+    display: flex;
+
+    background-color: rgb(153, 153, 201);
+}
+
+.fa-search{
+    font-size: larger;
+    margin-top: 3px;
+}
+.button{
+    border: none;
+}
+.right{
+    background-color: rgb(153, 153, 201);
+}
+
+.button2{
+    border: none;
+    background-color: rgb(70, 68, 154);
+    color: black;
+    margin: 0;
+    padding: 10px;
+   border-radius: 5px;
+  
+
+}
+
+.right{
+    display: flex;
+    padding: 10px;
+    gap: 5px;
+    align-items: center;
+
+    background-color: rgb(153, 153, 201);
+    
+}
+a{
+    text-decoration: none;
+}
+.navbar{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+
+    background-color: rgb(153, 153, 201);
+
+}
+.b3{
+    height: 40px;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+
+    background-color: rgb(53, 50, 206);
+}
+
+.loginbox{
+height: 800px;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+background-repeat: no-repeat;
+background-size: contain;
+}
+
+.loginbox2{
+    height: 400px;
+    width: 400px;
+   border-radius: 20px;
+   color: black;
+   background-color: rgb(150, 150, 202);
+    padding: 10px;
+    text-align: center;
+    font-size: x-large;
+    justify-content: center;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background-color: rgb(150, 150, 202);
+        width: 400px;
+       padding-top: 20px;
+        align-items: center;
+        justify-content: center;
+
+    }
+.log{
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+}
+.submit{
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.log1{
+
+    background-color: rgb(150, 150, 202);
+    text-decoration: underline;
+}

@@ -1,17 +1,23 @@
-import './App.css'
-
-import Login from './components/Login.jsx';
-import Footer from './components/Footer.jsx';
-import Register from './components/Register.jsx';
+import "./App.css";
+import React from "react";
+import Navbar from "./components/Navbar";
+import Login from "./components/Login";
+import {Route, Routes} from "react-router-dom";
+import Layout from "./Layout";
+import Register from "./components/Register";
 
 function App() {
   return (
-    <>
-  <Login/>
-  <br />
-  <br />
-  <Footer/>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout/>}> 
+
+      <Route index element ={<Navbar/>}/>
+      <Route path="/login" index element ={<Login/>}/>
+      <Route path="/register" index element ={<Register/>}/>
+      </Route>
+
+    </Routes>
+    
   );
 }
 
