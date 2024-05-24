@@ -2,7 +2,6 @@
     padding: 0;
     margin: 0;
     color: black;
-    background-color:  rgb(185, 205, 204);
 }
 
 .header{
@@ -12,7 +11,8 @@
     gap: 5px;
     position: fixed;
     width: 100%;
-    background-color: rgb(153, 153, 201);
+    background-color: rgb(31, 31, 57);
+   
     
 }
 
@@ -24,39 +24,36 @@
     justify-content: center;
     font-size: larger;
     text-decoration: none;
-
-    background-color: rgb(153, 153, 201);
+    
+    background-color:rgb(31, 31, 57);
 }
 
 .title{
    
-    background-color: rgb(153, 153, 201);
+    background-color: rgb(31, 31, 57);
     font-size: x-large;
     font-weight: bold;
+    color: azure;
 }
 .fa{
-    padding: 5px;
     margin: 5px;
     gap: 5px;
     display: flex;
-
-    background-color: rgb(153, 153, 201);
+    color: azure;
+    background-color:rgb(31, 31, 57);
 }
 
 .fa-search{
     font-size: larger;
-    margin-top: 3px;
 }
-.button{
-    border: none;
-}
+
 .right{
-    background-color: rgb(153, 153, 201);
+    background-color: rgb(31, 31, 57);
 }
 
 .button2{
     border: none;
-    background-color: rgb(70, 68, 154);
+    background-color:rgb(140, 140, 203);
     color: black;
     margin: 0;
     padding: 10px;
@@ -71,7 +68,7 @@
     gap: 5px;
     align-items: center;
 
-    background-color: rgb(153, 153, 201);
+    background-color: rgb(31, 31, 57);
     
 }
 a{
@@ -83,7 +80,7 @@ a{
     gap: 20px;
     justify-content: center;
 
-    background-color: rgb(153, 153, 201);
+    background-color: rgb(31, 31, 57);
 
 }
 .b3{
@@ -96,7 +93,7 @@ a{
 }
 
 .loginbox{
-height: 800px;
+height: 700px;
 width: 100%;
 display: flex;
 align-items: center;
@@ -106,22 +103,25 @@ background-size: contain;
 }
 
 .loginbox2{
+
     height: 400px;
     width: 400px;
    border-radius: 20px;
-   color: black;
-   background-color: rgb(150, 150, 202);
+    padding-top: 10px;
+   color: rgb(255, 255, 255);
+   background-color: rgb(73, 73, 127);
     padding: 10px;
     text-align: center;
     font-size: x-large;
     justify-content: center;
+    margin: auto;
     }
 
     form{
         display: flex;
         flex-direction: column;
         gap: 20px;
-        background-color: rgb(150, 150, 202);
+        background-color: rgb(73, 73, 127);
         width: 400px;
        padding-top: 20px;
         align-items: center;
@@ -138,9 +138,72 @@ background-size: contain;
     border: none;
     border-radius: 5px;
     margin-bottom: 10px;
+    background-color: rgb(215, 222, 155);
+}
+.err{
+    font-size: medium;
+    padding-top: 2px;
 }
 .log1{
-
-    background-color: rgb(150, 150, 202);
+color: aliceblue;
+    background-color: rgb(73, 73, 127);
     text-decoration: underline;
+}
+
+
+
+.dash1{
+    height: 64px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
+.page{
+    width: 220px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: aliceblue;
+    border-radius: 20px;
+    
+}
+
+.fpbutton{
+    height: 70px;
+    background-color: rgb(31, 31, 57);
+    width: 200px;
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+p{
+    color: white;
+}
+.f2{
+    background-color: rgb(31, 31, 57);
+}
+.fullpage{
+    background-color: aliceblue;
+    display: flex;
+}
+
+.page2{
+    height: 500px;
+    background-image: url(https://images.pexels.com/photos/154147/pexels-photo-154147.jpeg?auto=compress&cs=tinysrgb&w=600);
+    width: 80%;
+    margin: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 15px;
+    
+}
+
+.content{
+    height: 400px;
+    width: 400px;
+    border: 2px solid brown;
+    margin-top: 20px;
 }
