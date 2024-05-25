@@ -11,14 +11,15 @@ const Login = () => {
     const { email, password } = data
     setIsSubmitting(true)
     try {
-      const { data: signInData, error } = await supabase.auth.signIn({ email, password })
+      const { data: signInData, error } = await supabase.auth.signInWithPassword({ email, password })
       console.log(signInData, error)
       setIsSubmitting(false)
       if (error) throw error
-      alert('Signup successful, please check your email for verification link!')
+      alert('Login successful')
     } catch (error) {
       setIsSubmitting(false)
-      alert('Signup failed: ${error.message}')
+      alert('Login failed: ${error.message}')
+      console.log(error)
     }
   }
 
@@ -50,7 +51,7 @@ const Login = () => {
       </div>
 
       <button type="submit" className='submit' disabled={isSubmitting}>
-        {isSubmitting ? 'Loggin in...' : 'Login'}
+        {isSubmitting ? 'Logging in...' : 'Login'}
       </button>
     </form>
     

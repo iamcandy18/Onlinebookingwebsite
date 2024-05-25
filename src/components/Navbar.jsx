@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 export default function Navbar(){
     return(<>
 <header className="header">
-        <Link to={'/firstpage'} className="logo">
+        <Link to={'/'} className="logo">
           <i class="fa fa-snowflake-o" aria-hidden="true"></i>
           <span className="title">EVES</span>
         </Link>
