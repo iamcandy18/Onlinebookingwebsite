@@ -152,7 +152,7 @@ background-size: contain;
     border: none;
     border-radius: 5px;
     margin-bottom: 10px;
-    background-color: rgb(255, 0, 89);;
+    background-color: rgb(255, 0, 89);
 }
 .err{
     font-size: medium;
@@ -199,15 +199,57 @@ color: aliceblue;
     justify-content: space-around;
     
 }
-
-
-
-.content{
-    height: 400px;
-    width: 600px;
-    border: 2px solid rgb(177, 80, 80);
-    margin-top: 50px;
+.info{
+    text-align: center;
+    font-weight: lighter;
+    
+}
+.info h2{
+    text-align: center;
+    font-weight: lighter;
+    padding-top: 10px;
+    text-decoration: underline;
+}
+.info h4{
+    text-align: center;
+    font-weight: lighter;
+    padding-top: 10px;
+}
+.info button{
+    background-color: rgb(255, 0, 89);
+    border: none;
+    padding: 5px;
+   border-radius: 5px;
+}
+.out{
+    background-color: rgb(255, 0, 89);
+    border: none;
+    padding: 15px;
+   border-radius: 5px;
+}
+.dash{
+    display: flex;
+    flex-direction: column;
+}
+.dd{
     margin: auto;
+}
+
+.fa-check{
+    color: #ffffff;
+    background-color: #000000;
+    padding: 2px;
+    margin: 2px;
+    border-radius: 5px;
+}
+.content{
+    height: 300px;
+    width: 300px;
+   margin: 20px;
+   box-shadow:10px 10px 10px  #b5b5b5;
+    
+   border-radius: 25px;
+   background-color: #ececec;
     display: flex;
     justify-content: start;
     flex-direction: column;
@@ -217,9 +259,9 @@ color: aliceblue;
 }
 
 .fa3{
-    font-size: 200px;
+    font-size: 150px;
     color: rgb(31, 31, 57);
-    background-color: rgb(255, 255, 255);
+    
    padding-top: 40px;
   }
 
@@ -252,4 +294,70 @@ color: aliceblue;
 border-radius: 15px;
   }
 
+ 
+  .card p{
+    color: rgb(107, 109, 109);
+    text-align: center;
+
+  }
+  .img img{
+    width:300px;
+    height: 300px;
+    border-radius: 30px;
+    margin: 10px;
+  }
+
+  .cardbox{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    justify-content: space-between;
+  }
+
+  .footer {
+    background-color: #b5b5b5;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
   
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .footer-section {
+    flex: 1 1 300px;
+    margin: 10px;
+  }
+  
+  .footer-section h3 {
+    margin-top: 0;
+  }
+  
+  .footer-section p {
+    margin: 10px 0;
+  }
+  
+  .logos {
+    text-align: center;
+  }
+  
+  .logo-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .logo {
+    height: 50px;
+    width: auto;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .fullpage{
+        display: hidden;
+    }
+  }

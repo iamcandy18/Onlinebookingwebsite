@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { supabase } from './api/client';
-import { Link, Navigate } from "react-router-dom";
+import { supabase } from '../api/client';
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
-const Register = () => {
+const Login = () => {
+  const Navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -11,23 +12,17 @@ const Register = () => {
     const { email, password } = data
     setIsSubmitting(true)
     try {
-      const { data: signUpData, error } = await supabase.auth.signUp({ email, password })
-      console.log(signUpData, error)
+      const { data: signInData, error } = await supabase.auth.signInWithPassword({ email, password })
+      console.log(signInData, error)
       setIsSubmitting(false)
       if (error) throw error
-      alert('Signup successful, please check your email for verification link!')
-      const { data, error2 } = await supabase
-      .from('users')
-      .insert([{ email, password }]); 
-    if (error2) {
-      console.error('Error inserting user data:', error2.message);
-    } else {
-      console.log('User signed up successfully:', data);}
+      alert('Login successful')
       Navigate("/dashboard")
-
+     
     } catch (error) {
       setIsSubmitting(false)
-      alert('Signup failed: ${error.message}')
+      alert('Login failed: ${error.message}')
+      console.log(error)
     }
   }
 
@@ -35,7 +30,7 @@ const Register = () => {
  <div>
       <div className="loginbox">
       <div className="loginbox2">
-      SIGN UP NOW
+      LOGIN
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         
@@ -59,26 +54,27 @@ const Register = () => {
       </div>
 
       <button type="submit" className='submit' disabled={isSubmitting}>
-        {isSubmitting ? 'Signing up...' : 'Sign Up'}
+        {isSubmitting ? 'Logging in...' : 'Login'}
       </button>
     </form>
     
     
-    Already have an account?
+    Not Registered Yet?
         <br />
-       
-        <Link path to='/login' className='log1'>
-Login Here
+
+        <Link path to ='/register' className='log1'>
+        Create an Account
 </Link>
 
 <div className="loginother">
-  <button className='cont1'><i class="fa fa-google" aria-hidden="true"></i></button>
-  <button className='cont1'><i class="fa fa-github" aria-hidden="true"></i></button>
+  <button className='cont1'><i className="fa fa-google" aria-hidden="true"></i></button>
+  <button className='cont1'><i className="fa fa-github" aria-hidden="true"></i></button>
   </div>
+
     </div>
       </div>
     </div>
   )
 }
 
-export default Register
+export default Login
