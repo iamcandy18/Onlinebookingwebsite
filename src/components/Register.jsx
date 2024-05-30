@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { supabase } from '../client'
+import { supabase } from './api/client';
 import { Link, Navigate } from "react-router-dom";
 
 const Register = () => {
@@ -16,6 +16,15 @@ const Register = () => {
       setIsSubmitting(false)
       if (error) throw error
       alert('Signup successful, please check your email for verification link!')
+      const { data, error2 } = await supabase
+      .from('users')
+      .insert([{ email, password }]); 
+    if (error2) {
+      console.error('Error inserting user data:', error2.message);
+    } else {
+      console.log('User signed up successfully:', data);}
+      Navigate("/dashboard")
+
     } catch (error) {
       setIsSubmitting(false)
       alert('Signup failed: ${error.message}')
@@ -61,7 +70,11 @@ const Register = () => {
         <Link path to='/login' className='log1'>
 Login Here
 </Link>
-    
+
+<div className="loginother">
+  <button className='cont1'><i class="fa fa-google" aria-hidden="true"></i></button>
+  <button className='cont1'><i class="fa fa-github" aria-hidden="true"></i></button>
+  </div>
     </div>
       </div>
     </div>

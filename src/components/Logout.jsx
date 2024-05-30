@@ -1,5 +1,5 @@
 import React from 'react'
-import { supabase } from '../client'
+import { supabase } from './api/client'
 const Logout = () => {
     async function signOut() {
         const { error } = await supabase.auth.signOut()

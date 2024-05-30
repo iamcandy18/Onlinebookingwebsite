@@ -11,10 +11,10 @@ import Firstpage from "./components/Firstpage";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout/>}> 
-
+      <Route>
       <Route path="/login" index element ={<Login/>}/>
-      <Route index element ={<Firstpage/>}/>
+      
+      <Route index element ={<Layout/>}/>
       <Route path="/register" index element ={<Register/>}/>
       <Route path="/dashboard" index element ={<Dashboard/>}/>
       </Route>

@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { supabase } from '../client'
-import { Link, Navigate } from "react-router-dom";
+import { supabase } from './api/client';
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const Navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -16,6 +17,8 @@ const Login = () => {
       setIsSubmitting(false)
       if (error) throw error
       alert('Login successful')
+      Navigate("/dashboard")
+     
     } catch (error) {
       setIsSubmitting(false)
       alert('Login failed: ${error.message}')
@@ -59,9 +62,14 @@ const Login = () => {
     Not Registered Yet?
         <br />
 
-        <Link to={'/Register'} className='log1'>
+        <Link path to ='/register' className='log1'>
         Create an Account
 </Link>
+
+<div className="loginother">
+  <button className='cont1'><i class="fa fa-google" aria-hidden="true"></i></button>
+  <button className='cont1'><i class="fa fa-github" aria-hidden="true"></i></button>
+  </div>
 
     </div>
       </div>
