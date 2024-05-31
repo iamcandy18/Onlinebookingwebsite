@@ -1,45 +1,47 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "./api/client";
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUser = async () => {
+    async function getUserData() {
       try {
-        const currentUser = supabase.auth.getUser();
-        setUser(currentUser);
+        const { data, error } = await supabase.auth.getUser();
+        if (error) {
+          throw error;
+        }
+        if (data?.user) {
+          setUser(data.user);
+          console.log(data.user);
+          if (data.user) {
+            navigate("/dashboard"); 
+          }
+        }
       } catch (error) {
-        console.error("Error fetching user:", error.message);
+        console.error("Error fetching user data:", error.message);
       }
-    };
-
-    fetchUser();
+    }
+    getUserData();
   }, []);
 
+  
   return (
-    <>
-      <header className="header">
-        <Link to={"/"} className="logo">
-          <i className="fa fa-snowflake-o" aria-hidden="true"></i>
-          <span className="title">EveS</span>
+    <header className="header">
+      <Link to="/" className="logo">
+        <i className="fa fa-snowflake-o" aria-hidden="true"></i>
+        <span className="title">EveS</span>
+      </Link>
+      <div className="right">
+        <Link to="/dashboard">
+          <i className="fa fa-bars" aria-hidden="true"></i>
         </Link>
-        <div className="right">
-          {user ? (
-            <Link to={"/dashboard"}>
-              <i className="fa fa-bars" aria-hidden="true"></i>
-              <i className="fa fa-user" aria-hidden="true"></i>
-            </Link>
-          ) : (
-            <Link to={"/login"}>
-              <i className="fa fa-bars" aria-hidden="true"></i>
-              <i className="fa fa-user" aria-hidden="true"></i>
-            </Link>
-          )}
-        </div>
-      </header>
-    </>
+        <Link to="/dashboard">
+          <i className="fa fa-user" aria-hidden="true"></i>
+        </Link>
+      </div>
+    </header>
   );
 }
-

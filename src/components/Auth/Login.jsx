@@ -16,8 +16,10 @@ const Login = () => {
       console.log(signInData, error)
       setIsSubmitting(false)
       if (error) throw error
-      alert('Login successful')
-      Navigate("/dashboard")
+      alert('Login successful');
+        
+        Navigate("/dashboard");
+      
      
     } catch (error) {
       setIsSubmitting(false)
@@ -25,6 +27,8 @@ const Login = () => {
       console.log(error)
     }
   }
+ 
+  
 
   return (
  <div>
@@ -58,17 +62,17 @@ const Login = () => {
       </button>
     </form>
     
-    
+    <h6>
     Not Registered Yet?
         <br />
 
         <Link path to ='/register' className='log1'>
         Create an Account
-</Link>
+</Link></h6>
 
 <div className="loginother">
-  <button className='cont1'><i className="fa fa-google" aria-hidden="true"></i></button>
-  <button className='cont1'><i className="fa fa-github" aria-hidden="true"></i></button>
+  <button className='cont1' ><i className="fa fa-google" aria-hidden="true"></i></button>
+  <button className='cont1' ><i className="fa fa-github" aria-hidden="true"></i></button>
   </div>
 
     </div>

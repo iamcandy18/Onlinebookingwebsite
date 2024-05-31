@@ -1,23 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "./api/client";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
-  const [user, setUser] = useState({});
-const navigate = useNavigate();
-
-useEffect(()=>{
-  fetchUser();
-},[])
-
-async function fetchUser(){
-  const {data} = await supabase
-  .from('user')
-  .select('*')
-  .setUser(data)
-  console.log(data)
-}
-
+  const [user, setUser] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getUserData() {
@@ -28,7 +17,6 @@ async function fetchUser(){
         }
         if (data?.user) {
           setUser(data.user);
-          console.log(data.user.email)
         }
       } catch (error) {
         console.error("Error fetching user data:", error.message);
@@ -37,35 +25,76 @@ async function fetchUser(){
     getUserData();
   }, []);
 
-  
-  if (!user.email) {
-    navigate("/login");
-    return null; 
+  useEffect(() => {
+    async function fetchUserInfo() {
+      if (user) {
+        try {
+          const { data, error } = await supabase
+            .from('newusers')
+            .select('username, name')
+            .eq('email', user.email)
+            .single();
+          if (error) {
+            throw error;
+          }
+          setUserInfo(data);
+        } catch (error) {
+          console.error('Error fetching user info:', error.message);
+        }
+      }
+    }
+    fetchUserInfo();
+  }, [user]);
+
+  async function signOutUser() {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Error signing out:", error.message);
+    } else {
+      navigate("/");
+    }
   }
-  async function signOutUser(){
-    const {error} = await supabase.auth.signOut();
-    navigate("/")
+
+  if (!user) {
+    return (
+      <>
+        <div className="dash1"></div>
+        <div className="content mid">
+          <p>You're not logged in...</p>
+          <Link to="/login">
+            <button className="out">LOGIN</button>
+          </Link>
+        </div>
+      </>
+    );
   }
 
   return (
     <div className="dash">
       <div className="dash1"></div>
-      <div>
-      <div className="content">
-        <i className="fa fa-user-circle fa3" aria-hidden="true"></i>
-        <p>Email: {user.email}</p>
+      <div className="wr">
+        <div className="content">
+          <i className="fa fa-user-circle fa3" aria-hidden="true"></i>
+          {userInfo && (
+            <>
+              <h4>Username: {userInfo.username}
+              <br />
+
+              Name: {userInfo.name}
+              <br />
+              
+              Email: {user.email}</h4>
+            </>
+          )}
+          
+          
+        </div>
+        
       </div>
-    <div className="info content">
-     
-      <h2>Email Verified<i className="fa fa-check" aria-hidden="true"></i></h2>
-      <br />
-      <h2>Verify your identity</h2>
-      <h4>Before you book or host on EveS, you’ll need to complete this step.</h4>
-      <button>VERIFY</button>
-    </div>
-    </div>
-    <div className="dd"> <button className="out" onClick={()=>signOutUser()}>SIGN OUT</button></div>
-     
+      <div className="prof"></div>
+      <div className="dd">
+        <button className="out" onClick={signOutUser}>SIGN OUT</button>
+      </div>
     </div>
   );
 }

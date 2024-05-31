@@ -10,7 +10,7 @@ const Card = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("https://api.pexels.com/v1/search", {
-          params: { query:"trip treehouse waterpark", per_page: 24 },
+          params: { query:"castle treehouse", per_page: 24 },
           headers: {
             Authorization: `oFmDA19vH4xUvarbFKJQYIV3ruIYoIVWv2D1Ka7WO9MqbXd8Uqlrp0yA`,
           },
@@ -19,7 +19,7 @@ const Card = () => {
         const data = response.data.photos.map((item, index) => ({
           imageUrl: item.src.medium,
           description: `event ${index + 1}`,
-          distance: Math.floor(Math.random() * 1000), 
+          distance: Math.floor(Math.random() * 100), 
           price: Math.floor(Math.random() * 500) + 100, 
         }));
 

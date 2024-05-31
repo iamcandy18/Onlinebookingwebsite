@@ -9,7 +9,7 @@ const Cardx = ({ imageUrl, description, distance, price }) => {
       <div className="cardtext">
         <p>{description}</p>
         <p>
-          {distance} km <br /> ${price} per night/day
+          {distance} km <br /> ${price} per day
         </p>
       </div>
     </div>

@@ -264,7 +264,23 @@ color: aliceblue;
     
    padding-top: 40px;
   }
+.wr{
+    display: flex;
+    justify-content: center;
 
+}
+.content form{
+    width: 100px;
+    padding: 0;
+    background-color: #ececec;
+    margin-top: 20px;
+}
+.content form input{
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+    padding: 5px;
+}
   .cont1{
     background-color:  rgb(255, 255, 255);
     border: none;
@@ -355,7 +371,22 @@ border-radius: 15px;
     height: 50px;
     width: auto;
   }
+.mid{
+    margin: auto;
+    margin-top: 100px;
 
+}
+.mid p,button{
+    padding-top: 100px;
+
+
+}
+
+.hello{
+    padding: 10px;
+    color: rgb(255, 0, 89);
+    padding-left: 100px;
+}
   @media only screen and (max-width: 600px) {
     .fullpage{
         display: hidden;
