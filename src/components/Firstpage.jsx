@@ -78,7 +78,7 @@ function Firstpage() {
         ))}
       </div>
       
-      <Card />
+      <Link to="/booking"><Card /></Link>
       <Footer />
     </div>
   );

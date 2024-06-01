@@ -3,8 +3,31 @@ import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "./api/client";
 
 export default function Navbar() {
+
+  const [userInfo, setUserInfo] = useState(null);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    async function fetchUserInfo() {
+      if (user) {
+        try {
+          const { data, error } = await supabase
+            .from('newusers')
+            .select('username, name')
+            .eq('email', user.email)
+            .single();
+          if (error) {
+            throw error;
+          }
+          setUserInfo(data);
+        } catch (error) {
+          console.error('Error fetching user info:', error.message);
+        }
+      }
+    }
+    fetchUserInfo();
+  }, [user]);
 
   useEffect(() => {
     async function getUserData() {
@@ -35,13 +58,16 @@ export default function Navbar() {
         <span className="title">EveS</span>
       </Link>
       <div className="right">
+      <Link to="/dashboard">{userInfo?<h3 className="hello">{userInfo.name}</h3>:<></>}</Link>
         <Link to="/dashboard">
+        
           <i className="fa fa-bars" aria-hidden="true"></i>
-        </Link>
-        <Link to="/dashboard">
+        
           <i className="fa fa-user" aria-hidden="true"></i>
+        
         </Link>
       </div>
+      
     </header>
   );
 }

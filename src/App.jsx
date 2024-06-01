@@ -7,6 +7,7 @@ import Layout from "./Layout";
 import Register from "./components/Auth/Register";
 import Dashboard from "./components/Dashboard";
 import Firstpage from "./components/Firstpage";
+import Booking from "./components/Booking";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route index element ={<Firstpage/>}/>
       <Route path="/register" index element ={<Register/>}/>
       <Route path="/dashboard" index element ={<Dashboard/>}/>
+      <Route path="/booking" index element ={<Booking/>}/>
       </Route>
 
     </Routes>
