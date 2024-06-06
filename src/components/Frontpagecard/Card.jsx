@@ -18,7 +18,7 @@ const Card = () => {
 
         const data = response.data.photos.map((item, index) => ({
           imageUrl: item.src.medium,
-          description: `event ${index + 1}`,
+          description: `Event ${index + 1}`,
           distance: Math.floor(Math.random() * 100), 
           price: Math.floor(Math.random() * 500) + 100, 
         }));

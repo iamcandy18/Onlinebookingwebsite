@@ -39,9 +39,7 @@ export default function Navbar() {
         if (data?.user) {
           setUser(data.user);
           console.log(data.user);
-          if (data.user) {
-            navigate("/dashboard"); 
-          }
+          
         }
       } catch (error) {
         console.error("Error fetching user data:", error.message);
@@ -58,7 +56,7 @@ export default function Navbar() {
         <span className="title">EveS</span>
       </Link>
       <div className="right">
-      <Link to="/dashboard">{userInfo?<h3 className="hello">{userInfo.name}</h3>:<></>}</Link>
+      <Link to="/dashboard">{userInfo?<h3 className="fax">{userInfo.name}</h3>:<></>}</Link>
         <Link to="/dashboard">
         
           <i className="fa fa-bars" aria-hidden="true"></i>

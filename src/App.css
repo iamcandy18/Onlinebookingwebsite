@@ -2,6 +2,8 @@
     padding: 0;
     margin: 0;
     color: black;
+    font-family: monospace;
+
 }
 
 .header{
@@ -14,6 +16,9 @@
     background-color: rgb(248, 232, 232);
    
     
+}
+.padding{
+    height: 20px;
 }
 
 .logo{
@@ -38,10 +43,13 @@
 }
 .fa{
     display: flex;
-   
     color:rgb(255, 0, 89);
     padding-left: 10px;
     font-size: x-large;
+}
+.fax{
+    color:rgb(255, 0, 89);
+    font-family: monospace;
 }
 
 .fa-search{
@@ -84,6 +92,7 @@ margin-right: 20px;
 
     
 }
+
 a{
     text-decoration: none;
 }
@@ -117,12 +126,13 @@ background-size: contain;
 
 .loginbox2{
 
-    height: 400px;
+    height: 500px;
     width: 400px;
    border-radius: 20px;
     padding-top: 10px;
    color: rgb(0, 0, 0);
    background-color: rgb(248, 232, 232);
+   box-shadow:0 0 10px rgb(255, 255, 255); 
     padding: 10px;
     text-align: center;
     font-size: x-large;
@@ -171,7 +181,7 @@ color: aliceblue;
 .dash1{
     height: 64px;
     width: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(248, 232, 232);
 }
 .page{
     width: 220px;
@@ -227,6 +237,13 @@ color: aliceblue;
     padding: 15px;
    border-radius: 5px;
 }
+.out1{
+    background-color: rgb(255, 0, 89);
+    border: none;
+    padding: 15px;
+    margin-top: 20px;
+   border-radius: 5px;
+}
 .dash{
     display: flex;
     flex-direction: column;
@@ -243,20 +260,37 @@ color: aliceblue;
     border-radius: 5px;
 }
 .content{
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 400px;
    margin: 20px;
-   box-shadow:10px 10px 10px  #b5b5b5;
+   box-shadow:0 0 10px rgb(255, 255, 255); 
     
    border-radius: 25px;
    background-color: #ececec;
-    display: flex;
-    justify-content: start;
-    flex-direction: column;
-    align-items: center;
+   display: flex;
+   justify-content: start;
+   flex-direction: column;
+   align-items: center;
     gap: 20px;
 
 }
+
+.contentx{
+    height: 600px;
+    width: 600px;
+   margin: 20px;
+   box-shadow:0 0 10px rgb(255, 255, 255); 
+    
+   border-radius: 25px;
+   background-color: #ececec;
+   display: flex;
+   justify-content: start;
+   flex-direction: column;
+   align-items: center;
+    gap: 20px;
+
+}
+
 
 .fa3{
     font-size: 150px;
@@ -266,8 +300,35 @@ color: aliceblue;
   }
 .wr{
     display: flex;
+   
+    align-items: center;
+    flex-direction: column;
+    height: 1200px;
+    width: 100%;
+    background-image: url(https://images.pexels.com/photos/220118/pexels-photo-220118.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.wr1{
+    display: flex;
+    color: #ffffff;
+    height: 650px;
+    width: 100%;
     justify-content: center;
-
+    align-items: center;
+    flex-direction: column;
+    background-image: url(https://images.pexels.com/photos/220118/pexels-photo-220118.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.wr2{
+    
+    color: #ffffff;
+    height: 2500px;
+    width: 100%;
+    background-image: url(https://images.pexels.com/photos/220118/pexels-photo-220118.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .content form{
     width: 100px;
@@ -280,6 +341,9 @@ color: aliceblue;
     border: none;
     text-align: center;
     padding: 5px;
+}
+.content h5{
+    text-decoration: underline;
 }
   .cont1{
     background-color:  rgb(255, 255, 255);
@@ -329,6 +393,9 @@ border-radius: 15px;
     margin: 0;
     justify-content: space-between;
   }
+  .cardtext p{
+    color: white;
+  }
 
   .footer {
     background-color: #b5b5b5;
@@ -371,9 +438,18 @@ border-radius: 15px;
     height: 50px;
     width: auto;
   }
+  .label{
+    font-size: medium;
+    gap: 10px;
+    display: flex;
+
+
+   
+  }
 .mid{
     margin: auto;
     margin-top: 100px;
+    color: #ececec;
 
 }
 .mid p,button{
@@ -384,9 +460,51 @@ border-radius: 15px;
 
 .hello{
     padding: 10px;
-    color: rgb(255, 0, 89);
+    color: white;
     padding-left: 100px;
+    font-family: monospace;
 }
+
+
+.white {
+    color: #ffffff;
+    padding: 20px;
+    font-weight: 600;
+    font-size: x-large;
+}
+
+.empty{
+    background-color: #ececec;
+    border: none;
+    padding: 0px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 3px;
+  }
+  table:hover{
+     cursor: pointer;
+  }
+
+  .contentx1{
+    height: 600px;
+    width: 800px;
+   margin: 20px;
+   box-shadow:0 0 10px rgb(255, 255, 255); 
+    
+   border-radius: 25px;
+   background-color: #ececec;
+   display: flex;
+   justify-content: start;
+   flex-direction: column;
+   align-items: center;
+    gap: 20px;
+
+}
+
+
+
   @media only screen and (max-width: 600px) {
     .fullpage{
         display: hidden;

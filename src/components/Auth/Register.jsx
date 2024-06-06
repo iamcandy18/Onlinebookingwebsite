@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [user, setUser] = useState(null);
+  const[mode,setMode]=useState("no");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,12 +28,15 @@ const Register = () => {
     }
     getUserData();
   }, []);
+  if (user) {
+    navigate("/dashboard")
+  }
 
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit = async (data) => {
-    const { email, password, username, name } = data;
+    const { email, password, username, name, mode} = data;
     setIsSubmitting(true);
     try {
       const { data: signUpData, error } = await supabase.auth.signUp({ email, password });
@@ -40,8 +44,10 @@ const Register = () => {
       setIsSubmitting(false);
       if (error) throw error;
       alert('Signup successful, please check your email for verification link!');
-      await saveUserInfo({ email, username, name });
+      await saveUserInfo({ email, username, name, mode});
       console.log('User signed up successfully:', signUpData);
+
+      
       navigate("/dashboard");
     } catch (error) {
       setIsSubmitting(false);
@@ -50,10 +56,10 @@ const Register = () => {
   };
 
   const saveUserInfo = async (user) => {
-    const { email, username, name } = user;
+    const { email, username, name,mode } = user;
     const { data, error } = await supabase
       .from('newusers')
-      .insert([{ username: username, email: email, name: name }]);
+      .insert([{ username: username, email: email, name: name, Admin:mode }]);
 
     if (error) {
       console.error('Error saving user info:', error.message);
@@ -62,9 +68,18 @@ const Register = () => {
     }
   };
 
+  const handleOAuthLogin = async (provider) => {
+    const { error } = await supabase.auth.signUpWithOAuth({ provider });
+    if (error) {
+      console.error("Error during OAuth login:", error.message);
+    }
+  };
+
+
   return (
     <div>
       <div className="loginbox">
+      <div className="wr1">
         <div className="loginbox2">
           SIGN UP NOW
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -99,6 +114,17 @@ const Register = () => {
               />
               {errors.password && <p className='err'>{errors.password.message}</p>}
             </div>
+
+            <div className='label'>
+      <input type="radio" name="mode" id="User" checked
+        onChange={() => setMode("no")} required /><label htmlFor="User" >User</label>
+      <input type="radio" name="mode" id="Admin"  
+        onChange={() => setMode("yes")}
+      required/><label htmlFor="Admin" >Admin</label>
+    
+      </div>
+               
+
             <button type="submit" className='submit' disabled={isSubmitting}>
               {isSubmitting ? 'Signing up...' : 'Sign Up'}
             </button>
@@ -107,6 +133,13 @@ const Register = () => {
             <br />
             <Link to='/login' className='log1'>Login Here</Link>
           </h6>
+
+          <div className="loginother">
+  <button className='cont1'  onClick={() => handleOAuthLogin('google')}><i className="fa fa-google" aria-hidden="true"></i></button>
+  <button className='cont1' onClick={() => handleOAuthLogin('github')} ><i className="fa fa-github" aria-hidden="true"></i></button>
+  </div>
+        </div>
+        
         </div>
       </div>
     </div>

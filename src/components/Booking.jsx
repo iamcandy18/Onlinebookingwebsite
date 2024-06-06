@@ -7,6 +7,8 @@ const Booking = () => {
     const [event, setEvent] = useState('');
     const [location, setLocation] = useState('');
     const [eventdate, setEventdate] = useState('');
+
+    const [eventtime, setEventtime] = useState('');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
     const date = new Date().toISOString().split('T')[0]; 
@@ -25,14 +27,14 @@ const Booking = () => {
 
         const { data, error } = await supabase
             .from('booking')
-            .insert([{ user_email: email, event_name: event , booking_date: date, event_date:eventdate, event_location:location, ticket_number:ticket,}])
+            .insert([{ user_email: email, event_name: event , booking_date: date, event_date:eventdate, event_location:location, ticket_number:ticket, etime:eventtime}])
             .select(); 
 
         if (error) {
             alert(`Error: ${error.message}`);
         } else {
             const booking = data[0];
-            alert('Booking successful! Check your email for the ticket receipt.');
+            alert('Booking successful!');
             setBool(true);
             
         }
@@ -40,16 +42,15 @@ const Booking = () => {
     };
     const buttonTexts = [
         { text: 'TREEHOUSE', icon: 'fa-tree' },
-        { text: 'ICONS', icon: 'fa-ticket' },
-        { text: 'OMG!', icon: 'fa-plane' },
-        { text: 'CABIN', icon: 'fa-home' },
+        { text: 'WATER PARK', icon: 'fa-ticket' },
+        { text: 'BUNJEE JUMPING', icon: 'fa-home' },
         { text: 'LAKE', icon: 'fa-pied-piper' },
         { text: 'AMAZING VIEW', icon: 'fa-window-maximize' },
         { text: 'COUNTRYSIDE', icon: 'fa-globe' },
         { text: 'NATIONAL PARKS', icon: 'fa-envira' },
-        { text: 'RESTAURANTS', icon: 'fa-cutlery' },
+        { text: 'RESTAURANT', icon: 'fa-cutlery' },
         { text: 'CAFES', icon: 'fa-coffee' },
-        { text: 'SNOW PARKS', icon: 'fa-cubes' },
+        { text: 'SNOW PARK', icon: 'fa-cubes' },
         { text: 'FILTERS', icon: 'fa-toggle-on' }
       ];
      
@@ -72,7 +73,8 @@ const Booking = () => {
   return (
     <div>
         <div className="dash1"></div>
-        <div className="content mid">
+        <div className="wr1">
+        <div className="content mid ">
         <form onSubmit={handleBooking}>
               <input
                   type="email"
@@ -114,7 +116,9 @@ const Booking = () => {
         value={eventdate}
           onChange={(e) => setEventdate(e.target.value)}
           required/>
-
+<input type="time" name="time" id="timeinput" value={eventtime}
+          onChange={(e) => setEventtime(e.target.value)}
+          required />
             
               <button className='out' type="submit" disabled={loading}>
                   {loading ? 'Booking...' : 'Book Ticket'}
@@ -124,6 +128,9 @@ const Booking = () => {
           </div>
 
           {bool?<h4 className='mid'>CONGRATULATIONS! YOU HAVE BOOKED YOUR TICKET, YOUR TICKET NUMBER {ticket}</h4>:<></>}
+
+
+          </div>
     </div>
   )
 }

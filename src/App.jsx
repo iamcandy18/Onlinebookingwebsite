@@ -8,6 +8,7 @@ import Register from "./components/Auth/Register";
 import Dashboard from "./components/Dashboard";
 import Firstpage from "./components/Firstpage";
 import Booking from "./components/Booking";
+import Admin from "./components/Frontpagecard/Admin";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/register" index element ={<Register/>}/>
       <Route path="/dashboard" index element ={<Dashboard/>}/>
       <Route path="/booking" index element ={<Booking/>}/>
+      <Route path="/admin" index element ={<Admin/>}/>
       </Route>
 
     </Routes>

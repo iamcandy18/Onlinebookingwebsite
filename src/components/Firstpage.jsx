@@ -64,8 +64,10 @@ function Firstpage() {
   return (
     <div>
       <div className="dash1"></div>
+
+      <div className="wr2">
       <div className="">
-        {userInfo ? <Link to="/dashboard"><h2 className="hello">Hello, {userInfo.name}</h2> </Link>: <p></p>}
+        {userInfo ? <Link to="/dashboard"><h2 className="hello">Hello, {userInfo.name}</h2> </Link>:<div className="padding"></div>}
       </div>
       <div className="fullpage">
         {buttonTexts.map(({ text, icon }) => (
@@ -77,8 +79,9 @@ function Firstpage() {
           </div>
         ))}
       </div>
-      
+     
       <Link to="/booking"><Card /></Link>
+      </div>
       <Footer />
     </div>
   );
