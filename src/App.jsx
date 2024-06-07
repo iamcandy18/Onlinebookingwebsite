@@ -9,7 +9,6 @@ import Dashboard from "./components/Dashboard";
 import Firstpage from "./components/Firstpage";
 import Booking from "./components/Booking";
 import Admin from "./components/Frontpagecard/Admin";
-
 function App() {
   return (
     <Routes>
@@ -21,6 +20,7 @@ function App() {
       <Route path="/dashboard" index element ={<Dashboard/>}/>
       <Route path="/booking" index element ={<Booking/>}/>
       <Route path="/admin" index element ={<Admin/>}/>
+
       </Route>
 
     </Routes>

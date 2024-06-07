@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { supabase } from './api/client';
-
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Booking = () => {
+  const [user, setUser] = useState(null);
     const [email, setEmail] = useState('');
     const [event, setEvent] = useState('');
     const [location, setLocation] = useState('');
@@ -68,8 +70,43 @@ const Booking = () => {
         { text: 'Chandigarh' },
         { text: 'Goa' }
       ];
-    
-    
+      useEffect(() => {
+      async function getUserData() {
+        try {
+          const { data, error } = await supabase.auth.getUser();
+          if (error) {
+            throw error;
+          }
+          if (data?.user) {
+            setUser(data.user);
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error.message);
+        }
+      }
+      getUserData();
+    }, []);
+
+    if (!user) {
+      return (
+        <>
+          <div className="dash1"></div>
+          <div className="wr1">
+            <p className="white">You're not logged in...</p>
+            <Link to="/login">
+              <button className="out">LOGIN</button>
+            </Link>
+            <br />
+            <Link to="/register">
+              <button className="out">SIGN UP</button>
+            </Link>
+          </div>
+        </>
+      );
+    }
+  
+
+
   return (
     <div>
         <div className="dash1"></div>

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../api/client';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Admin = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const [bookings, setBookings] = useState([]);
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     if (!user) return;
@@ -24,6 +26,12 @@ const Admin = () => {
   }
   fetchUserBookings();
 }, [user]);
+
+useEffect(() => {
+  if (userInfo?.admin === "no") {
+    navigate("/dashboard");
+  }
+}, [userInfo, navigate]);
 
 
   async function signOutUser() {
@@ -51,6 +59,48 @@ const Admin = () => {
     }
     getUserData();
   }, []);
+
+
+  useEffect(() => {
+    if (!user) return;
+    
+    async function fetchUserInfo() {
+      try {
+        const { data, error } = await supabase
+          .from('newusers')
+          .select('username, name, admin')
+          .eq('email', user.email)
+          .single();
+        if (error) {
+          throw error;
+        }
+        setUserInfo(data);
+        setNameInput(data.name);
+      } catch (error) {
+        console.error('Error fetching user info:', error.message);
+      }
+    }
+    fetchUserInfo();
+  }, [user]);
+
+  if (!user) {
+    return (
+      <>
+        <div className="dash1"></div>
+        <div className="wr1">
+          <p className="white">You're not logged in...</p>
+          <Link to="/login">
+            <button className="out">LOGIN</button>
+          </Link>
+          <br />
+          <Link to="/register">
+            <button className="out">SIGN UP</button>
+          </Link>
+        </div>
+      </>
+    );
+  }
+
 
   return (
     <div>

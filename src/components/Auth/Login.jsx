@@ -20,8 +20,8 @@ const Login = () => {
       alert('Login successful');
       await saveUserInfo({ mode });
 
-      if (mode === "yes") navigate("/admin");
-      else navigate("/dashboard");
+      if (mode === "yes") {navigate("/admin");}
+      else {navigate("/dashboard");}
     } catch (error) {
       setIsSubmitting(false)
       alert(`Login failed: ${error.message}`)
@@ -29,18 +29,14 @@ const Login = () => {
     }
   }
   
-  const handleOAuthLogin = async (provider) => {
-    const { error } = await supabase.auth.signInWithOAuth({ provider });
-    if (error) {
-      console.error("Error during OAuth login:", error.message);
-    }
-  };
+ 
 
   const saveUserInfo = async (user) => {
-    const { mode } = user;
+    const { email, mode } = user;
     const { data, error } = await supabase
       .from('newusers')
-      .insert([{ admin: mode }]);
+      .update([{ admin: mode }])
+      .eq('email', email);
 
     if (error) {
       console.error('Error saving user info:', error.message);
@@ -110,14 +106,7 @@ const Login = () => {
               </Link>
             </h6>
 
-            <div className="loginother">
-              <button className='cont1' onClick={() => handleOAuthLogin('google')} >
-                <i className="fa fa-google" aria-hidden="true"></i>
-              </button>
-              <button className='cont1' onClick={() => handleOAuthLogin('github')} >
-                <i className="fa fa-github" aria-hidden="true"></i>
-              </button>
-            </div>
+            
           </div>
         </div>
       </div>

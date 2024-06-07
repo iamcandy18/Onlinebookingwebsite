@@ -7,6 +7,7 @@ import Footer from "./Footer";
 function Firstpage() {
   const [user, setUser] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
+  const [text, setText] = useState('');
 
   useEffect(() => {
     async function getUserData() {
@@ -47,40 +48,51 @@ function Firstpage() {
   }, [user]);
 
   const buttonTexts = [
-    { text: 'TREEHOUSE', icon: 'fa-tree' },
-    { text: 'ICONS', icon: 'fa-ticket' },
-    { text: 'OMG!', icon: 'fa-plane' },
-    { text: 'CABIN', icon: 'fa-home' },
-    { text: 'LAKE', icon: 'fa-pied-piper' },
-    { text: 'AMAZING VIEW', icon: 'fa-window-maximize' },
-    { text: 'COUNTRYSIDE', icon: 'fa-globe' },
-    { text: 'NATIONAL PARKS', icon: 'fa-envira' },
-    { text: 'RESTAURANTS', icon: 'fa-cutlery' },
-    { text: 'CAFES', icon: 'fa-coffee' },
-    { text: 'SNOW PARKS', icon: 'fa-cubes' },
-    { text: 'FILTERS', icon: 'fa-toggle-on' }
+    { text: 'TREEHOUSE', icon: 'fa-tree', linkTo: '/treehouse' },
+    { text: 'LAKE', icon: 'fa-pied-piper', linkTo: '/lake' },
+    { text: 'AMAZING VIEW', icon: 'fa-window-maximize', linkTo: '/amazing-view' },
+    { text: 'COUNTRYSIDE', icon: 'fa-globe', linkTo: '/countryside' },
+    { text: 'NATIONAL PARKS', icon: 'fa-envira', linkTo: '/national-parks' },
+    { text: 'RESTAURANTS', icon: 'fa-cutlery', linkTo: '/restaurants' },
+    { text: 'CAFES', icon: 'fa-coffee', linkTo: '/cafes' },
+    { text: 'SNOW PARKS', icon: 'fa-cubes', linkTo: '/snow-parks' },
+    { text: 'MUSIC SHOWS', icon: 'fa-microphone', linkTo: '/cafes' },
+    { text: 'SNOW PARKS', icon: 'fa-cubes', linkTo: '/snow-parks' },
   ];
+
+  const changecardimages = (text) => {
+    setText(text);
+  };
 
   return (
     <div>
       <div className="dash1"></div>
 
       <div className="wr2">
-      <div className="">
-        {userInfo ? <Link to="/dashboard"><h2 className="hello">Hello, {userInfo.name}</h2> </Link>:<div className="padding"></div>}
-      </div>
-      <div className="fullpage">
-        {buttonTexts.map(({ text, icon }) => (
-          <div className="fpicons" key={text}>
-            <button className="fpb">
-              <p>{text}</p>
-              <i className={`fa ${icon}`} aria-hidden="true"></i>
-            </button>
-          </div>
-        ))}
-      </div>
-     
-      <Link to="/booking"><Card /></Link>
+        <div className="">
+          {userInfo ? (
+            <Link to="/dashboard">
+              <h2 className="hello">Hello, {userInfo.name}</h2>
+            </Link>
+          ) : (
+            <div className="padding"></div>
+          )}
+        </div>
+
+        <div className="fullpage">
+          {buttonTexts.map(({ text, icon, linkTo }) => (
+            <div className="fpicons" key={text}>
+              <button className="fpb" onClick={() => changecardimages(text)}>
+                <p>{text}</p>
+                <i className={`fa ${icon}`} aria-hidden="true"></i>
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <Link to="/booking">
+          <Card text={text} />
+        </Link>
       </div>
       <Footer />
     </div>

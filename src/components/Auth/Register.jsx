@@ -47,7 +47,7 @@ const Register = () => {
       await saveUserInfo({ email, username, name, mode});
       console.log('User signed up successfully:', signUpData);
 
-      
+
       navigate("/dashboard");
     } catch (error) {
       setIsSubmitting(false);
@@ -68,13 +68,7 @@ const Register = () => {
     }
   };
 
-  const handleOAuthLogin = async (provider) => {
-    const { error } = await supabase.auth.signUpWithOAuth({ provider });
-    if (error) {
-      console.error("Error during OAuth login:", error.message);
-    }
-  };
-
+  
 
   return (
     <div>
@@ -134,10 +128,6 @@ const Register = () => {
             <Link to='/login' className='log1'>Login Here</Link>
           </h6>
 
-          <div className="loginother">
-  <button className='cont1'  onClick={() => handleOAuthLogin('google')}><i className="fa fa-google" aria-hidden="true"></i></button>
-  <button className='cont1' onClick={() => handleOAuthLogin('github')} ><i className="fa fa-github" aria-hidden="true"></i></button>
-  </div>
         </div>
         
         </div>
