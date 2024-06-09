@@ -236,6 +236,8 @@ color: aliceblue;
     border: none;
     padding: 15px;
    border-radius: 5px;
+   margin: 10px;
+   align-items: center;
 }
 .out1{
     background-color: rgb(255, 0, 89);
@@ -243,6 +245,24 @@ color: aliceblue;
     padding: 15px;
     margin-top: 20px;
    border-radius: 5px;
+}
+.out2{
+    background-color: rgb(255, 0, 89);
+    border: none;
+    padding: 5px;
+   border-radius: 5px;
+   font-size: small;
+   
+
+}
+.center :nth-child(2){
+    padding: 11px 2px 11px 2px;
+}
+.center{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+   
 }
 .dash{
     display: flex;
@@ -275,13 +295,13 @@ color: aliceblue;
 
 }
 
-.contentx{
-    height: 600px;
-    width: 600px;
+.content-x{
+    height: 800px;
+    width: 800px;
    margin: 20px;
    box-shadow:0 0 10px rgb(255, 255, 255); 
     
-   border-radius: 25px;
+   border-radius: 5px;
    background-color: #ececec;
    display: flex;
    justify-content: start;
@@ -291,6 +311,18 @@ color: aliceblue;
 
 }
 
+.contentx{
+    height: 800px;
+    width: 700px;
+   margin: 20px;
+   box-shadow:0 0 10px rgb(255, 255, 255); 
+    
+   border-radius: 25px;
+   background-color: #ececec;
+   
+    gap: 20px;
+
+}
 
 .fa3{
     font-size: 150px;
@@ -329,6 +361,11 @@ color: aliceblue;
     background-image: url(https://images.pexels.com/photos/220118/pexels-photo-220118.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
     background-repeat: no-repeat;
     background-size: cover;
+
+    display: flex;
+   
+    align-items: center;
+    flex-direction: column;
 }
 .content form{
     width: 100px;
@@ -358,21 +395,23 @@ color: aliceblue;
   .fpicons{
     display: flex;
     flex-direction: row;
-    
+    justify-content: start;
+    margin-top: 20px;
+    border: 2px solid ;
+    gap: 20px;
+    padding: 5px;
+    color: #b5b5b5;
+  }
+  .fpicons i{
+    color: #b5b5b5;
   }
   .fpicons p{
-    
-    color: rgb(247, 84, 119);
-    
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    color: #b5b5b5;
   }
-  .fpb{
-    background-color: rgb(244, 241, 241);
-    border: none;
-    margin: 10px;
-    padding: 20px;
-    margin-top: 0px;
-border-radius: 15px;
-  }
+  
 
  
   .card p{
@@ -506,8 +545,10 @@ table, th, td {
 .App {
     text-align: center;
 }
-
-
+.carousel .thumbs-wrapper {
+    display: none !important;
+  }
+  
 
  
 @media only screen and (max-width: 768px) {
@@ -592,3 +633,106 @@ table, th, td {
 
    
 }
+
+
+/* AddEventForm.css */
+
+.add-event-form {
+    max-width: 500px;
+    margin-left: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+    
+   box-shadow:0 0 10px rgb(255, 255, 255); 
+  }
+  
+  .add-event-form label {
+    display: block;
+  }
+  
+  .add-event-form input[type="text"],
+  .add-event-form input[type="datetime-local"],
+  .add-event-form input[type="number"],
+  .add-event-form textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .add-event-form textarea {
+    height: 100px;
+  }
+  
+  .add-event-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #e06995;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-event-form button:hover {
+    background-color: #d03865;
+  }
+  
+  .flex{
+    display: flex;
+    justify-content: start;
+  }
+
+
+.event-card {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 1200px;
+    background-color: rgb(41, 30, 85);
+    color: #ffffff;
+  }
+  .event-card p {
+    color: #ffffff;
+  }
+  .event-card h2 {
+    color: #ffffff;
+
+  }
+  
+  .event-card img {
+    width: 800px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px 0 0 5px;
+  }
+  
+  .event-details {
+    padding: 10px;
+display: flex;
+flex-direction: column;
+    justify-content: center;
+  }
+  
+  .event-details h2 {
+    margin-top: 0;
+  }
+  .home-page h1{
+color: white;
+margin: 30px;
+  }
+  .event-list {
+    gap: 5px;
+      }
+  
+  .event-details p {
+    margin: 5px 0;
+  }
+  

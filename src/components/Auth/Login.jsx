@@ -1,38 +1,63 @@
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { supabase } from '../api/client';
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors } } = useForm()
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [mode, setMode] = useState("no");
+  const [user, setUser] = useState(null);  // Define user state
+
+  useEffect(() => {
+    async function getUserData() {
+      try {
+        const { data, error } = await supabase.auth.getUser();
+        if (error) {
+          throw error;
+        }
+        if (data?.user) {
+          setUser(data.user);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error.message);
+      }
+    }
+    getUserData();
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, [user, navigate]);
 
   const onSubmit = async (data) => {
-    const { email, password } = data
-    setIsSubmitting(true)
+    const { email, password } = data;
+    setIsSubmitting(true);
     try {
-      const { data: signInData, error } = await supabase.auth.signInWithPassword({ email, password })
-      console.log(signInData, error)
-      setIsSubmitting(false)
-      if (error) throw error
+      const { data: signInData, error } = await supabase.auth.signInWithPassword({ email, password });
+      setIsSubmitting(false);
+      if (error) throw error;
+
       alert('Login successful');
-      await saveUserInfo({ mode });
+      await saveUserInfo({ email, mode });
 
-      if (mode === "yes") {navigate("/admin");}
-      else {navigate("/dashboard");}
+      if (mode === "yes") {
+        navigate("/admin");
+      } else {
+        navigate("/dashboard");
+      }
     } catch (error) {
-      setIsSubmitting(false)
-      alert(`Login failed: ${error.message}`)
-      console.log(error)
+      setIsSubmitting(false);
+      alert(`Login failed: ${error.message}`);
+      console.log(error);
     }
-  }
-  
- 
+  };
 
-  const saveUserInfo = async (user) => {
-    const { email, mode } = user;
+  const saveUserInfo = async (userInfo) => {
+    const { email, mode } = userInfo;
     const { data, error } = await supabase
       .from('newusers')
       .update([{ admin: mode }])
@@ -72,27 +97,6 @@ const Login = () => {
                 {errors.password && <p className='err'>{errors.password.message}</p>}
               </div>
 
-              <div className='label'>
-                <input
-                  type="radio"
-                  name="mode"
-                  id="User"
-                  onChange={() => setMode("no")}
-                  required
-                  checked={mode === "no"}
-                />
-                <label htmlFor="User">User</label>
-                <input
-                  type="radio"
-                  name="mode"
-                  id="Admin"
-                  onChange={() => setMode("yes")}
-                  required
-                  checked={mode === "yes"}
-                />
-                <label htmlFor="Admin">Admin</label>
-              </div>
-
               <button type="submit" className='submit' disabled={isSubmitting}>
                 {isSubmitting ? 'Logging in...' : 'Login'}
               </button>
@@ -105,13 +109,11 @@ const Login = () => {
                 Create an Account
               </Link>
             </h6>
-
-            
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

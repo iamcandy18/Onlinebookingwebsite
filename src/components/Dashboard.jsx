@@ -57,7 +57,7 @@ function Dashboard() {
       try {
         const { data, error } = await supabase
           .from('booking')
-          .select('user_email, event_name, event_date, event_location, ticket_number, etime')
+          .select('id, user_email, event_name, event_date, event_location, ticket_number, etime')
         if (error) {
           throw error;
         }
@@ -74,8 +74,6 @@ function Dashboard() {
       navigate("/admin");
     }
   }, [userInfo, navigate]);
-
- 
 
   async function signOutUser() {
     const { error } = await supabase.auth.signOut();
@@ -108,6 +106,22 @@ function Dashboard() {
       console.log('User info saved successfully:', data);
     } catch (error) {
       console.error('Error saving user info:', error.message);
+    }
+  };
+
+  const cancelBooking = async (bookingId) => {
+    try {
+      const { error } = await supabase
+        .from('booking')
+        .delete()
+        .eq('id', bookingId);
+      if (error) {
+        throw error;
+      }
+      setBookings((prev) => prev.filter((booking) => booking.id !== bookingId));
+      alert('Booking canceled successfully');
+    } catch (error) {
+      console.error('Error canceling booking:', error.message);
     }
   };
 
@@ -176,7 +190,7 @@ function Dashboard() {
 
         <div className="contentx">
           <button className="out1">Your Present Bookings</button>
-          <p>Tap to know the ticket number</p>
+          <p>Tap to know the ticket number or cancel your booking</p>
           <table>
             <thead>
               <tr>
@@ -185,17 +199,28 @@ function Dashboard() {
                 <th>Time</th>
                 <th>Event</th>
                 <th>Location</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {bookings.map((booking) => 
                 booking.user_email === user.email && (
-                  <tr key={booking.event_date} onClick={() => alert(`Ticket Number: ${booking.ticket_number}`)}>
+                  <tr key={booking.id}>
                     <td>{booking.user_email}</td>
                     <td>{booking.event_date}</td>
                     <td>{booking.etime}</td>
                     <td>{booking.event_name}</td>
                     <td>{booking.event_location}</td>
+                    <td>
+                      <div className="center">
+                      <button className="out2" onClick={() => alert(`Ticket Number: ${booking.ticket_number}`)}>
+                        Ticket Number
+                      </button>
+                      <button className="out2" onClick={() => cancelBooking(booking.id)}>
+                        Cancel
+                      </button>
+                      </div>
+                    </td>
                   </tr>
                 )
               )}

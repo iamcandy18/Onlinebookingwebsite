@@ -1,21 +1,58 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import { supabase } from "./api/client";
-import Card from "./Frontpagecard/Card";
+import { Link } from "react-router-dom";
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import EventCard from "./Frontpagecard/Eventcard";
 import Footer from "./Footer";
+import { supabase } from "./api/client";
 
 function Firstpage() {
   const [user, setUser] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
   const [text, setText] = useState('');
+  const [images, setImages] = useState([]);
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  async function fetchEvents() {
+    try {
+      let { data: events, error } = await supabase
+        .from('events')
+        .select('*');
+      if (error) throw error;
+      setEvents(events);
+    } catch (error) {
+      console.log('Error fetching events:', error.message);
+    }
+  }
+
+  async function fetchImageUrls() {
+    try {
+      const { data, error } = await supabase
+        .from('images') 
+        .select('url');
+      if (error) throw error;
+
+      const urls = data.map(image => image.url);
+      console.log('Fetched image URLs:', urls); // Add log
+      setImages(urls);
+    } catch (error) {
+      console.error('Error fetching image URLs:', error.message);
+    }
+  }
+
+  useEffect(() => {
+    fetchImageUrls();
+  }, []);
 
   useEffect(() => {
     async function getUserData() {
       try {
         const { data, error } = await supabase.auth.getUser();
-        if (error) {
-          throw error;
-        }
+        if (error) throw error;
         if (data?.user) {
           setUser(data.user);
         }
@@ -35,9 +72,7 @@ function Firstpage() {
             .select('username, name')
             .eq('email', user.email)
             .single();
-          if (error) {
-            throw error;
-          }
+          if (error) throw error;
           setUserInfo(data);
         } catch (error) {
           console.error('Error fetching user info:', error.message);
@@ -48,16 +83,16 @@ function Firstpage() {
   }, [user]);
 
   const buttonTexts = [
-    { text: 'TREEHOUSE', icon: 'fa-tree', linkTo: '/treehouse' },
-    { text: 'LAKE', icon: 'fa-pied-piper', linkTo: '/lake' },
-    { text: 'AMAZING VIEW', icon: 'fa-window-maximize', linkTo: '/amazing-view' },
-    { text: 'COUNTRYSIDE', icon: 'fa-globe', linkTo: '/countryside' },
-    { text: 'NATIONAL PARKS', icon: 'fa-envira', linkTo: '/national-parks' },
-    { text: 'RESTAURANTS', icon: 'fa-cutlery', linkTo: '/restaurants' },
-    { text: 'CAFES', icon: 'fa-coffee', linkTo: '/cafes' },
-    { text: 'SNOW PARKS', icon: 'fa-cubes', linkTo: '/snow-parks' },
-    { text: 'MUSIC SHOWS', icon: 'fa-microphone', linkTo: '/cafes' },
-    { text: 'SNOW PARKS', icon: 'fa-cubes', linkTo: '/snow-parks' },
+    { event: 'LAKE', icon: 'fa-pied-piper ' },
+    { event: 'NATIONAL PARKS', icon: 'fa-envira ' },
+    { event: 'RESTAURANTS', icon: 'fa-cutlery ' },
+    { event: 'CAFES', icon: 'fa-coffee ' },
+    { event: 'SNOW PARKS', icon: 'fa-cubes ' },
+    { event: 'MUSIC SHOWS', icon: 'fa-microphone' },
+    { event: 'ART EXHIBITS', icon: 'fa-paint-brush' },
+    { event: 'HISTORICAL SITES', icon: 'fa-landmark' },
+    { event: 'BEACHES', icon: 'fa-umbrella-beach' },
+    { event: 'THEATER', icon: 'fa-theater-masks' }
   ];
 
   const changecardimages = (text) => {
@@ -69,6 +104,16 @@ function Firstpage() {
       <div className="dash1"></div>
 
       <div className="wr2">
+
+        <div className="fullpage">
+          {buttonTexts.map(({ event, icon }) => (
+            <div className="fpicons" key={event}>
+              <p>{event}</p>
+              <i className={`fa ${icon}`} aria-hidden="true"></i>
+            </div>
+          ))}
+        </div>
+
         <div className="">
           {userInfo ? (
             <Link to="/dashboard">
@@ -79,21 +124,25 @@ function Firstpage() {
           )}
         </div>
 
-        <div className="fullpage">
-          {buttonTexts.map(({ text, icon, linkTo }) => (
-            <div className="fpicons" key={text}>
-              <button className="fpb" onClick={() => changecardimages(text)}>
-                <p>{text}</p>
-                <i className={`fa ${icon}`} aria-hidden="true"></i>
-              </button>
+        <Carousel>
+          {images.map((url, index) => (
+            <div key={index}>
+              <img src={url} alt={`Slide ${index}`} />
             </div>
           ))}
-        </div>
+        </Carousel>
 
-        <Link to="/booking">
-          <Card text={text} />
-        </Link>
+        <div className="home-page">
+          <h1>Upcoming Events</h1>
+
+          <div className="event-list">
+            {events.map(event => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        </div>
       </div>
+
       <Footer />
     </div>
   );
