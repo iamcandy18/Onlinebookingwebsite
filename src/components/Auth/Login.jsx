@@ -7,19 +7,14 @@ const Login = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [mode, setMode] = useState("no");
-  const [user, setUser] = useState(null);  // Define user state
+  const [user, setUser] = useState(null);  
 
   useEffect(() => {
     async function getUserData() {
       try {
         const { data, error } = await supabase.auth.getUser();
-        if (error) {
-          throw error;
-        }
-        if (data?.user) {
-          setUser(data.user);
-        }
+        if (error) throw error;
+        if (data?.user) setUser(data.user);
       } catch (error) {
         console.error("Error fetching user data:", error.message);
       }
@@ -42,9 +37,7 @@ const Login = () => {
       if (error) throw error;
 
       alert('Login successful');
-      await saveUserInfo({ email, mode });
-
-      if (mode === "yes") {
+      if (data.mode === "yes") {
         navigate("/admin");
       } else {
         navigate("/dashboard");
@@ -56,61 +49,44 @@ const Login = () => {
     }
   };
 
-  const saveUserInfo = async (userInfo) => {
-    const { email, mode } = userInfo;
-    const { data, error } = await supabase
-      .from('newusers')
-      .update([{ admin: mode }])
-      .eq('email', email);
-
-    if (error) {
-      console.error('Error saving user info:', error.message);
-    } else {
-      console.log('User info saved successfully:', data);
-    }
-  };
-
   return (
-    <div>
-      <div className="loginbox"> 
-        <div className="wr">
-          <div className="loginbox2">
-            <div className="dash1"></div>
-            LOGIN
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div>
-                <input
-                  type="email" className="log" placeholder='Enter Your Email'
-                  {...register('email', { required: 'Email is required' })}
-                />
-                {errors.email && <p className='err'>{errors.email.message}</p>}
-              </div>
-
-              <div>
-                <input
-                  type="password" className="log" placeholder='Enter Your Password'
-                  {...register('password', { 
-                    required: 'Password is required', 
-                    minLength: { value: 6, message: 'Password must be at least 6 characters long' } 
-                  })}
-                />
-                {errors.password && <p className='err'>{errors.password.message}</p>}
-              </div>
-
-              <button type="submit" className='submit' disabled={isSubmitting}>
-                {isSubmitting ? 'Logging in...' : 'Login'}
-              </button>
-            </form>
-
-            <h6>
-              Not Registered Yet?
-              <br />
-              <Link to='/register' className='log1'>
-                Create an Account
-              </Link>
-            </h6>
+    <div className="loginbox">
+      <div className="loginbox2">
+        <h2>LOGIN</h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            <input
+              type="email"
+              className="log"
+              placeholder='Enter Your Email'
+              {...register('email', { required: 'Email is required' })}
+            />
+            {errors.email && <p className='err'>{errors.email.message}</p>}
           </div>
-        </div>
+
+          <div>
+            <input
+              type="password"
+              className="log"
+              placeholder='Enter Your Password'
+              {...register('password', { 
+                required: 'Password is required', 
+                minLength: { value: 6, message: 'Password must be at least 6 characters long' } 
+              })}
+            />
+            {errors.password && <p className='err'>{errors.password.message}</p>}
+          </div>
+
+          <button type="submit" className='submit' disabled={isSubmitting}>
+            {isSubmitting ? 'Logging in...' : 'Login'}
+          </button>
+        </form>
+
+        <p>
+          Not Registered Yet?
+          <br />
+          <Link to='/register' className='log1'>Create an Account</Link>
+        </p>
       </div>
     </div>
   );

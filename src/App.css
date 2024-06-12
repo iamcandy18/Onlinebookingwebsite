@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     color: black;
-    font-family: monospace;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 }
 
@@ -635,7 +635,7 @@ table, th, td {
 }
 
 
-/* AddEventForm.css */
+
 
 .add-event-form {
     max-width: 500px;
@@ -689,50 +689,97 @@ table, th, td {
     justify-content: start;
   }
 
+.event-list{
+    display: flex;
+gap: 10px;}
+
 
 .event-card {
-    display: flex;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    width: 1200px;
-    background-color: rgb(41, 30, 85);
-    color: #ffffff;
+    margin-top: 20px;
+    width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
   }
-  .event-card p {
-    color: #ffffff;
-  }
-  .event-card h2 {
-    color: #ffffff;
-
+  
+  .event-card:hover {
+    transform: scale(1.05);
   }
   
   .event-card img {
-    width: 800px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 5px 0 0 5px;
+    width: 100%;
+    height: 200px;
+    border-bottom: 2px solid #ddd;
   }
   
   .event-details {
-    padding: 10px;
-display: flex;
-flex-direction: column;
-    justify-content: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
   }
   
   .event-details h2 {
-    margin-top: 0;
+    margin: 0 0 10px;
+    font-size: 1.5em;
   }
-  .home-page h1{
-color: white;
-margin: 30px;
-  }
-  .event-list {
-    gap: 5px;
-      }
   
   .event-details p {
     margin: 5px 0;
   }
   
+  .event-details .out {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .event-details .out:hover {
+    background-color: #0056b3;
+  }
+  
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+
+  .booking-page {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f7f7f7;
+    font-family: 'Arial', sans-serif;
+}
+.event-detailsh{
+    margin-top: 80px;
+    position: fixed;
+    top: 0px;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+.event-detailsh img{
+    height: 300px;
+    width: 300px;
+}
+
+.event-detailsh p{
+    padding: 20px;
+    font-size: x-large;
+}
+.event-detailsh :nth-child(2){
+    padding: 20px;
+    font-size: x-large;
+}

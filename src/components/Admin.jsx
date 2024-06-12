@@ -16,8 +16,34 @@ const Admin = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const [registeredUsers, setRegisteredUsers] = useState({});
   const [events, setEvents] = useState([]);
+
+
+  async function fetchRegisteredUsers(eventId) {
+    try {
+      const { data, error } = await supabase
+        .from("registrations")
+        .select("email")
+        .eq("event_id", eventId);
+      if (error) throw error;
+      setRegisteredUsers((prev) => ({ ...prev, [eventId]: data }));
+    } catch (error) {
+      console.error("Error fetching registered users:", error.message);
+    }
+  }
+
+  function toggleDropdown(eventId) {
+    if (openDropdown === eventId) {
+      setOpenDropdown(null);
+    } else {
+      setOpenDropdown(eventId);
+      if (!registeredUsers[eventId]) {
+        fetchRegisteredUsers(eventId);
+      }
+    }
+  }
 
   async function addEvent(event) {
     event.preventDefault();
@@ -259,36 +285,57 @@ const Admin = () => {
                 </tr>
               </thead>
               <tbody>
-                {events.map((event) => (
-                  <tr key={event.id}>
-                    <td>{event.name}</td>
-                    <td>{event.location}</td>
-                    <td>{event.date}</td>
-                    <td>{event.time}</td>
-                    <td>{event.seats}</td>
-                    <td>
-                      <input
-                        type="number"
-                        value={event.price}
-                        onChange={(e) =>
-                          updateEventPrice(event.id, e.target.value)
-                        }
-                      />
-                    </td>
-                    <td>
-                      <img src={event.img} alt={event.name} width="50" />
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => cancelEvent(event.id)}
-                        className="out"
-                      >
-                        Cancel
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+  {events.map((event) => (
+    <React.Fragment key={event.id}>
+      <tr onClick={() => toggleDropdown(event.id)}>
+        <td>{event.name}</td>
+        <td>{event.location}</td>
+        <td>{event.date}</td>
+        <td>{event.time}</td>
+        <td>{event.seats}</td>
+        <td>
+          <input
+            type="number"
+            value={event.price}
+            onChange={(e) =>
+              updateEventPrice(event.id, e.target.value)
+            }
+          />
+        </td>
+        <td>
+          <img src={event.img} alt={event.name} width="50" />
+        </td>
+        
+        <td>
+          <button
+            onClick={() => cancelEvent(event.id)}
+            className="cancel-btn"
+          >
+            Cancel
+          </button>
+        </td>
+      </tr>
+      {openDropdown === event.id && (
+        <tr>
+          <td colSpan="10">
+            <div className="dropdown-content">
+              {registeredUsers[event.id] ? (
+                <ul>
+                  {registeredUsers[event.id].map((user, index) => (
+                    <li key={index}>{user.email}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>Loading...</p>
+              )}
+            </div>
+          </td>
+        </tr>
+      )}
+    </React.Fragment>
+  ))}
+</tbody>
+
             </table>
           </div>
         </div>
