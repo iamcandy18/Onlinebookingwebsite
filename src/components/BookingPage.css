@@ -1,0 +1,101 @@
+.dash{
+  height: 58px;
+}
+.booking-page{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image:url(https://images.pexels.com/photos/220118/pexels-photo-220118.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+background-repeat: no-repeat;
+background-size: cover;
+}
+.booking-page h1{
+  color: rgb(0, 0, 0);
+  font-size: xxx-large;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.booking-page p,strong,label{
+  color: white;
+  font-size: large;
+  font-family: 'Times New Roman', Times, serif;
+}
+.opac{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 1520px;
+ background-color: rgba(255, 255, 255, 0.2);
+ background-size: cover;
+ background-repeat: no-repeat;
+ border-radius: 20px;
+ margin-top: 0px;
+}
+
+.booking-page div img{
+  height: 300px;
+
+}
+.main{
+  display: flex;
+  justify-content: space-around;
+  gap: 50px;
+  margin: 40px;
+}
+.main img{
+  border-radius: 20px;
+}
+.main p,strong{
+  color: black;
+  border-radius: 20px;
+}
+.flex{
+  display: flex;
+}
+.flex p{
+  margin-top: 20px;
+}
+.flex i{
+  color: white;
+}
+.flex button{
+  background-color: rgb(255, 0, 89);
+    border: none;
+    padding: 15px;
+   border-radius: 5px;
+   margin: 10px;
+   align-items: center;
+   color: white;
+}
+.book{
+  background-color: rgb(255, 0, 89);
+    border: none;
+    padding: 15px;
+   border-radius: 5px;
+   margin: 10px;
+   align-items: center;
+   color: rgb(0, 0, 0);
+}
+.in{
+  display: flex;
+  gap: 10px;
+}
+.in input{
+border-radius: 5px;
+}
+.in label{
+  color: rgb(0, 0, 0);
+  }
+.att{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mid-book{
+ padding-top: 20px;
+}

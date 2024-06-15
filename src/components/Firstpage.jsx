@@ -90,19 +90,17 @@ function Firstpage() {
 
   return (
     <div>
-      <div className="dash1"></div>
+      <div className="header-banner"></div>
 
-      <div className="wr2">
+      <div className="wrapper">
 
-        
-
-        <div className="">
+        <div className="user-greeting">
           {userInfo ? (
             <Link to="/dashboard">
-              <h2 className="hello">Hello, {userInfo.name}</h2>
+              <h2 className="hello-message">Hello, {userInfo.name}</h2>
             </Link>
           ) : (
-            <div className="padding"></div>
+            <div className="placeholder"></div>
           )}
         </div>
 
@@ -114,7 +112,7 @@ function Firstpage() {
           ))}
         </Carousel>
 
-        <div className="home-page">
+        <div className="home-section">
           <h1>Upcoming Events</h1>
 
           <div className="event-list">
@@ -124,7 +122,7 @@ function Firstpage() {
           </div>
         </div>
       </div>
-
+     
       <Footer />
     </div>
   );

@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { supabase } from "../api/client";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { supabase } from '../api/client';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [user, setUser] = useState(null);
   const [mode, setMode] = useState("no");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
-  const ADMIN_KEY = "23rurgy2gyygwdgyfvu";
+  const ADMIN_KEY = "xyzadmin";
 
   useEffect(() => {
     async function getUserData() {
@@ -77,6 +77,17 @@ const Register = () => {
       console.error("Error saving user info:", error.message);
     } else {
       console.log("User info saved successfully:", data);
+    }
+  };
+
+  const handleGoogleSignUp = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+      });
+      if (error) throw error;
+    } catch (error) {
+      alert(`Google Sign-Up failed: ${error.message}`);
     }
   };
 
@@ -167,6 +178,9 @@ const Register = () => {
                 {isSubmitting ? "Signing up..." : "Sign Up"}
               </button>
             </form>
+            <button onClick={handleGoogleSignUp} className="google-button">
+              Sign Up with Google
+            </button>
             <h6>
               Already have an account?
               <br />

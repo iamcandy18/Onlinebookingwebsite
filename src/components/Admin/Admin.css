@@ -1,0 +1,33 @@
+.form-container{
+    background-color: rgb(173, 169, 221);
+}
+
+.form-container form input,textarea{
+    background-color: white;
+    width: 1400px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    color: black;
+}
+.flex-container{
+    display: flex;
+    justify-content: center;
+}
+.form-container form{
+    background-color: rgba(255, 255, 255, 0.01);
+    width: 1500px;
+}
+.form-container form label{
+    color: rgb(0, 0, 0);
+    
+  
+}
+
+.form-title{
+    text-align: center;
+    font-weight: 800;
+    font-size: x-large;
+    color: black;
+    font-size: larger;
+}

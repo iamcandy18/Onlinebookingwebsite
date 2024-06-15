@@ -92,9 +92,7 @@ margin-right: 20px;
     
 }
 
-a{
-    text-decoration: none;
-}
+
 .navbar{
     display: flex;
     align-items: center;
@@ -113,39 +111,16 @@ a{
     background-color: rgb(0, 0, 0);
 }
 
-.loginbox{
-height: 700px;
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
-background-repeat: no-repeat;
-background-size: contain;
 
-}
-.loginbox2 h3{
-
-    font-weight: 50;
-}
-
-.loginbox2{
-   
-    
-    height: 500px;
-    width: 400px;
-   border-radius: 20px;
-    padding-top: 40px;
-  
-   background-color: rgb(248, 232, 232);
-   box-shadow:0 0 10px rgb(255, 255, 255); 
-    padding: 10px;
-    text-align: center;
-    font-size: x-large;
-   justify-content: center;
-   align-items: center;
-    margin: auto;
-    }
-
+    .google-button {
+        
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
     form{
         display: flex;
         flex-direction: column;
@@ -301,21 +276,7 @@ color: aliceblue;
 
 }
 
-.content-x{
-    height: 800px;
-    width: 800px;
-   margin: 20px;
-   box-shadow:0 0 10px rgb(255, 255, 255); 
-    
-   border-radius: 5px;
-   background-color: #ececec;
-   display: flex;
-   justify-content: start;
-   flex-direction: column;
-   align-items: center;
-    gap: 20px;
 
-}
 
 .contentx{
     height: 800px;
@@ -534,271 +495,66 @@ table, th, td {
 .carousel .thumbs-wrapper {
     display: none !important;
   }
-  
 
+  a{
+    text-decoration: none;
+  }
+
+
+
+
+
+  /*****/
+
+  .header-banner {
+    background-color: #f8f8f8;
+    height: 60px;
+    width: 100%;
+  }
  
-@media only screen and (max-width: 768px) {
-    
-    .logo {
-        justify-content: center;
-    }
-    .right {
-        margin-right: 0;
-        margin-top: 10px;
-        justify-content: center;
-    }
-    
-    .loginbox {
-        height: auto;
-    }
-    .loginbox2 {
-        width: 80%;
-    }
-    .content, .contentx, .contentx1 {
-        width: 90%;
-    }
-    .footer-section {
-        flex: 1 1 100%;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    
-    .fa {
-        font-size: large;
-    }
-    .wr2{
-        height: 1050px;
-    }
-    .navbar {
-        gap: 10px;
-        
-    }
-    .fullpage{
-        overflow: hidden;
-        gap: 10px;
-    }
-    .fullpage button{
-        height: 2px;
-        font-size: x-small;
-        text-align: start;
-
-    }
-    .fullpage button i{
-        display: none;
-    }
-    .button2 {
-        padding: 5px;
-    }
-    .navbutton {
-        padding: 5px;
-        font-size: small;
-    }
-    .loginbox {
-        padding-top: 50px;
-        height: auto;
-    }
-    .loginbox2 {
-        width: 90%;
-    }
-    .content, .contentx, .contentx1 {
-        width: 95%;
-    }
-    
-    .card{
-        margin: 0px 30px 0px 0px;
-        font-size: xx-small;
-    }
-    .img img{
-        height: 100px;
-        width: 100px;
-    }
-   .cardbox{
-    flex-wrap: wrap;
-   }
-
-   
-}
-
-
-
-
-.add-event-form {
-    width: 1400px;
-    margin-left: 20px;
-    
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    margin-top: 20px;
-    
-   box-shadow:0 0 10px rgb(255, 255, 255); 
-  }
-  
-  .add-event-form label {
-    display: block;
-    width: 1300px;
-  }
-  .add-event-form p {
-    text-align: center;
-    width: 1300px;
-  }
-  
-  .add-event-form input[type="text"],
-  .add-event-form input[type="datetime-local"],
-  .add-event-form input[type="number"], input[type="time"],input[type="date"],
-  .add-event-form textarea {
-    width: 1300px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-  
-  .add-event-form textarea {
-    height: 100px;
-  }
-  
-  .add-event-form button {
-    width: 100%;
-    padding: 10px;
-    
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .add-event-form button:hover {
-    background-color: #ff0073;
-  }
-  
-  .flex{
-   
-    justify-content: start;
-
-  }
-  .home-page h1{
-    color: white;
-    padding-top: 5px;
-  }
-
-.event-list{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: start;
-gap: 10px;}
-
-
-.event-card {
-    margin-top: 20px;
-    width: 300px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s;
-  }
-  
-  .event-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .event-card img {
-    width: 100%;
-    height: 200px;
-    border-bottom: 2px solid #ddd;
-  }
-  
-  .event-details {
+  .wrapper {
+    margin-left: 200px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    width: 1500px;
+    margin: 0 auto;
+    background-color: rgb(161, 10, 35);
   }
   
-  .event-details h2 {
-    margin: 0 0 10px;
-    font-size: 1.5em;
-  }
-  
-  .event-details p {
-    margin: 5px 0;
-  }
-  
-  .event-details .out {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .event-details .out:hover {
-    background-color: #0056b3;
-  }
-  
-  .profile-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
+  .user-greeting {
+    text-align: right;
     margin-bottom: 20px;
   }
   
-
-  .booking-page {
-    
+  .hello-message {
+    color: #333;
+    font-size: 24px;
+    text-decoration: none;
+  }
+  
+  .placeholder {
+    height: 40px;
+  }
+  
+  .carousel .slide img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+  }
+  
+  .home-section {
+    text-align: center;
+  }
+  
+  .event-list {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: #f7f7f7;
-    font-family: 'Arial', sans-serif;
-}
-.event-detailsh{
-    margin-top: 80px;
-    
-    top: 0px;
-    display: flex;
     gap: 20px;
-    padding: 20px;
-}
-.event-detailsh img{
-    height: 300px;
-    width: 300px;
-}
-
-.event-detailsh p{
-    padding: 20px;
-    font-size: x-large;
-}
-.event-detailsh :nth-child(2){
-    padding: 20px;
-    font-size: x-large;
-}
-.whitex{
-    color: #fff;
-    padding: 8px;
-}
-.x{
-    padding: 0px;
-    color: #fff;
-}
-.content-x{
-    width: 1400px;
-}
-input[type="text"], input[type="number"], input[type="date"], input[type="time"] {
-    width: 90%;
-    padding: 5px;
-    margin: 5px 0;
+    margin-top: 20px;
   }
-
-  .log{
-    padding: 5px;
+  
+  .event-list .event-card {
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
   }
+  

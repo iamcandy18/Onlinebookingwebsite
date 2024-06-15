@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { supabase } from "./api/client";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import './Dashboard.css'; 
 
 function Dashboard() {
   const [user, setUser] = useState(null);
@@ -144,12 +145,12 @@ function Dashboard() {
   }
 
   return (
-    <div className="dash">
-      <div className="dash1"></div>
-      <div className="wr">
+    <div className="dashboard">
+      <div className="dashboard-header"></div>
+      <div className="wrapper">
 
-        <div className="content">
-          <i className="fa fa-user-circle fa3" aria-hidden="true"></i>
+        <div className="profile">
+          <i className="fa fa-user-circle fa-3x" aria-hidden="true"></i>
           {userInfo && (
             <>
               <h4>
@@ -168,30 +169,30 @@ function Dashboard() {
                 Email: {user.email}
               </h4>
               {isEditing ? (
-                <button className="empty" onClick={saveUserInfo}>
+                <button className="btn-save" onClick={saveUserInfo}>
                   Save
                 </button>
               ) : (
-                <button className="empty" onClick={toggleEditing}>
-                  <h5>
-                    <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    Update
-                  </h5>
+                <button className="btn-edit" onClick={toggleEditing}>
+                  
+                    <i className="fa fa-pencil-square-o " aria-hidden="true"></i>
+                   
                 </button>
               )}
             </>
           )}
-          <div className="dd">
-            <button className="out" onClick={signOutUser}>
+           </div>
+          <div className="signout">
+            <button className="btn-signout" onClick={signOutUser}>
               SIGN OUT
             </button>
           </div>
-        </div>
+       
 
-        <div className="contentx">
-          <button className="out1">Your Present Bookings</button>
+        <div className="bookings">
+          <button className="btn-bookings">Your Present Bookings</button>
           <p>Tap to know the ticket number or cancel your booking</p>
-          <table>
+          <table className="bookings-table">
             <thead>
               <tr>
                 <th>Email</th>
@@ -212,13 +213,13 @@ function Dashboard() {
                     <td>{booking.event_name}</td>
                     <td>{booking.event_location}</td>
                     <td>
-                      <div className="center">
-                      <button className="out2" onClick={() => alert(`Ticket Number: ${booking.ticket_number}`)}>
-                        Ticket Number
-                      </button>
-                      <button className="out2" onClick={() => cancelBooking(booking.id)}>
-                        Cancel
-                      </button>
+                      <div className="actions">
+                        <button className="btn-action" onClick={() => alert(`Ticket Number: ${booking.ticket_number}`)}>
+                          Ticket Number
+                        </button>
+                        <button className="btn-action" onClick={() => cancelBooking(booking.id)}>
+                          Cancel
+                        </button>
                       </div>
                     </td>
                   </tr>
