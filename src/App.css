@@ -2,8 +2,7 @@
     padding: 0;
     margin: 0;
     color: black;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
+font-family: monospace;
 }
 
 .header{
@@ -122,21 +121,28 @@ align-items: center;
 justify-content: center;
 background-repeat: no-repeat;
 background-size: contain;
+
+}
+.loginbox2 h3{
+
+    font-weight: 50;
 }
 
 .loginbox2{
-
+   
+    
     height: 500px;
     width: 400px;
    border-radius: 20px;
-    padding-top: 10px;
-   color: rgb(0, 0, 0);
+    padding-top: 40px;
+  
    background-color: rgb(248, 232, 232);
    box-shadow:0 0 10px rgb(255, 255, 255); 
     padding: 10px;
     text-align: center;
     font-size: x-large;
-    justify-content: center;
+   justify-content: center;
+   align-items: center;
     margin: auto;
     }
 
@@ -344,7 +350,7 @@ color: aliceblue;
 .wr1{
     display: flex;
     color: #ffffff;
-    height: 650px;
+    height: 750px;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -356,7 +362,7 @@ color: aliceblue;
 .wr2{
     
     color: #ffffff;
-    height: 1250px;
+    height: 1800px;
     width: 100%;
     background-image: url(https://images.pexels.com/photos/220118/pexels-photo-220118.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
     background-repeat: no-repeat;
@@ -392,27 +398,7 @@ color: aliceblue;
     margin-top: 10px;
   }
 
-  .fpicons{
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    margin-top: 20px;
-    border: 2px solid ;
-    gap: 20px;
-    padding: 5px;
-    color: #b5b5b5;
-  }
-  .fpicons i{
-    color: #b5b5b5;
-  }
-  .fpicons p{
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    color: #b5b5b5;
-  }
   
-
  
   .card p{
     color: rgb(107, 109, 109);
@@ -638,9 +624,9 @@ table, th, td {
 
 
 .add-event-form {
-    max-width: 500px;
+    width: 1400px;
     margin-left: 20px;
-    padding: 20px;
+    
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
@@ -651,13 +637,18 @@ table, th, td {
   
   .add-event-form label {
     display: block;
+    width: 1300px;
+  }
+  .add-event-form p {
+    text-align: center;
+    width: 1300px;
   }
   
   .add-event-form input[type="text"],
   .add-event-form input[type="datetime-local"],
-  .add-event-form input[type="number"],
+  .add-event-form input[type="number"], input[type="time"],input[type="date"],
   .add-event-form textarea {
-    width: 100%;
+    width: 1300px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -672,7 +663,7 @@ table, th, td {
   .add-event-form button {
     width: 100%;
     padding: 10px;
-    background-color: #e06995;
+    
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -681,16 +672,24 @@ table, th, td {
   }
   
   .add-event-form button:hover {
-    background-color: #d03865;
+    background-color: #ff0073;
   }
   
   .flex{
-    display: flex;
+   
     justify-content: start;
+
+  }
+  .home-page h1{
+    color: white;
+    padding-top: 5px;
   }
 
 .event-list{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
 gap: 10px;}
 
 
@@ -764,7 +763,7 @@ gap: 10px;}
 }
 .event-detailsh{
     margin-top: 80px;
-    position: fixed;
+    
     top: 0px;
     display: flex;
     gap: 20px;
@@ -783,3 +782,23 @@ gap: 10px;}
     padding: 20px;
     font-size: x-large;
 }
+.whitex{
+    color: #fff;
+    padding: 8px;
+}
+.x{
+    padding: 0px;
+    color: #fff;
+}
+.content-x{
+    width: 1400px;
+}
+input[type="text"], input[type="number"], input[type="date"], input[type="time"] {
+    width: 90%;
+    padding: 5px;
+    margin: 5px 0;
+  }
+
+  .log{
+    padding: 5px;
+  }

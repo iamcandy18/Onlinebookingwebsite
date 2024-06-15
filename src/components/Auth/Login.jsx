@@ -50,9 +50,10 @@ const Login = () => {
   };
 
   return (
-    <div className="loginbox">
+    <div className="loginbox wr1">
       <div className="loginbox2">
-        <h2>LOGIN</h2>
+        <div>
+      LOGIN
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <input
@@ -82,11 +83,12 @@ const Login = () => {
           </button>
         </form>
 
-        <p>
+        <h6>
           Not Registered Yet?
           <br />
           <Link to='/register' className='log1'>Create an Account</Link>
-        </p>
+          </h6>
+          </div>
       </div>
     </div>
   );

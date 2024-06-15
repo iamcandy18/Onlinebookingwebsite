@@ -7,7 +7,8 @@ import Register from "./components/Auth/Register";
 import Dashboard from "./components/Dashboard";
 import Firstpage from "./components/Firstpage";
 import Admin from "./components/Admin";
-import Booking from "./components/Frontpagecard/Booking";
+import BookingPage from "./components/Booking";
+import Attendee from "./components/booking/Attendee";
 function App() {
   return (
     <Routes>
@@ -18,7 +19,8 @@ function App() {
       <Route path="/register" index element ={<Register/>}/>
       <Route path="/dashboard" index element ={<Dashboard/>}/>
       <Route path="/admin" index element ={<Admin/>}/>
-      <Route path="/booking" index element ={<Booking/>}/>
+      <Route path="/booking" index element ={<BookingPage/>}/>
+      <Route path="/booking/attendee" index element ={<Attendee/>}/>
       </Route>
 
     </Routes>

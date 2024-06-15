@@ -82,18 +82,7 @@ function Firstpage() {
     fetchUserInfo();
   }, [user]);
 
-  const buttonTexts = [
-    { event: 'LAKE', icon: 'fa-pied-piper ' },
-    { event: 'NATIONAL PARKS', icon: 'fa-envira ' },
-    { event: 'RESTAURANTS', icon: 'fa-cutlery ' },
-    { event: 'CAFES', icon: 'fa-coffee ' },
-    { event: 'SNOW PARKS', icon: 'fa-cubes ' },
-    { event: 'MUSIC SHOWS', icon: 'fa-microphone' },
-    { event: 'ART EXHIBITS', icon: 'fa-paint-brush' },
-    { event: 'HISTORICAL SITES', icon: 'fa-landmark' },
-    { event: 'BEACHES', icon: 'fa-umbrella-beach' },
-    { event: 'THEATER', icon: 'fa-theater-masks' }
-  ];
+  
 
   const changecardimages = (text) => {
     setText(text);
@@ -105,14 +94,7 @@ function Firstpage() {
 
       <div className="wr2">
 
-        <div className="fullpage">
-          {buttonTexts.map(({ event, icon }) => (
-            <div className="fpicons" key={event}>
-              <p>{event}</p>
-              <i className={`fa ${icon}`} aria-hidden="true"></i>
-            </div>
-          ))}
-        </div>
+        
 
         <div className="">
           {userInfo ? (
