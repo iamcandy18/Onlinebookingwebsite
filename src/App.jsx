@@ -10,6 +10,7 @@ import Admin from "./components/Admin/Admin";
 import BookingPage from "./components/Booking";
 import Attendee from "./components/booking/Attendee";
 import Add from "./components/Admin/Add";
+import CompleteProfile from "./components/Auth/Completeprofile";
 function App() {
   return (
     <Routes>
@@ -23,6 +24,8 @@ function App() {
       <Route path="/admin/add" index element ={<Add/>}/>
       <Route path="/booking" index element ={<BookingPage/>}/>
       <Route path="/booking/attendee" index element ={<Attendee/>}/>
+
+      <Route path="/complete-profile" index element ={<CompleteProfile/>}/>
       </Route>
 
     </Routes>

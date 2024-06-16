@@ -16,9 +16,6 @@ font-family: monospace;
    
     
 }
-.padding{
-    height: 20px;
-}
 
 .logo{
     display: flex;
@@ -46,30 +43,9 @@ font-family: monospace;
     padding-left: 10px;
     font-size: x-large;
 }
-.fax{
+.name{
     color:rgb(255, 0, 89);
     font-family: monospace;
-}
-
-.fa-search{
-    font-size: x-large;
-}
-.search{
-    background-color: rgb(253, 244, 244);
-    border-radius: 20px;
-    box-shadow: 5px 5px 5px grey;
-
-}
-.search button{
-    background-color: rgb(253, 244, 244);
-    padding: 10px;
-    font-size: medium;
-    border-radius: 20px;
-    border: 2px solid white;
-    
-}
-.fa-search2{
-    font-size: medium;
 }
 .button2{
     border: none;
@@ -133,85 +109,7 @@ margin-right: 20px;
 
         color: rgb(0, 0, 0);
     }
-.log{
-    padding: 15px;
-    border: none;
-    border-radius: 5px;
-}
-.submit{
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    background-color: rgb(255, 0, 89);
-}
-.err{
-    font-size: medium;
-    padding-top: 2px;
-}
-.log1{
-color: aliceblue;
-    background-color: rgb(248, 232, 232);
-    text-decoration: underline;
 
-   color: rgb(0, 0, 0);
-}
-
-
-
-.dash1{
-    height: 64px;
-    width: 100%;
-    background-color: rgb(248, 232, 232);
-}
-.page{
-    width: 220px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    border-radius: 20px;
-    
-}
-
-.fpbutton{
-    height: 70px;color: brown;
-    width: 200px;
-    border: none;
-    border-radius: 20px;
-    
-}
-
-.f2{
-    background-color: rgb(31, 31, 57);
-}
-.fullpage{
-    display: flex;
-    justify-content: space-around;
-    
-}
-.info{
-    text-align: center;
-    font-weight: lighter;
-    
-}
-.info h2{
-    text-align: center;
-    font-weight: lighter;
-    padding-top: 10px;
-    text-decoration: underline;
-}
-.info h4{
-    text-align: center;
-    font-weight: lighter;
-    padding-top: 10px;
-}
-.info button{
-    background-color: rgb(255, 0, 89);
-    border: none;
-    padding: 5px;
-   border-radius: 5px;
-}
 .out{
     background-color: rgb(255, 0, 89);
     border: none;
@@ -220,22 +118,7 @@ color: aliceblue;
    margin: 10px;
    align-items: center;
 }
-.out1{
-    background-color: rgb(255, 0, 89);
-    border: none;
-    padding: 15px;
-    margin-top: 20px;
-   border-radius: 5px;
-}
-.out2{
-    background-color: rgb(255, 0, 89);
-    border: none;
-    padding: 5px;
-   border-radius: 5px;
-   font-size: small;
-   
 
-}
 .center :nth-child(2){
     padding: 11px 2px 11px 2px;
 }
@@ -245,58 +128,9 @@ color: aliceblue;
     gap: 2px;
    
 }
-.dash{
-    display: flex;
-    flex-direction: column;
-}
-.dd{
-    margin: auto;
-}
-
-.fa-check{
-    color: #ffffff;
-    background-color: #000000;
-    padding: 2px;
-    margin: 2px;
-    border-radius: 5px;
-}
-.content{
-    height: 400px;
-    width: 400px;
-   margin: 20px;
-   box-shadow:0 0 10px rgb(255, 255, 255); 
-    
-   border-radius: 25px;
-   background-color: #ececec;
-   display: flex;
-   justify-content: start;
-   flex-direction: column;
-   align-items: center;
-    gap: 20px;
-
-}
 
 
 
-.contentx{
-    height: 800px;
-    width: 700px;
-   margin: 20px;
-   box-shadow:0 0 10px rgb(255, 255, 255); 
-    
-   border-radius: 25px;
-   background-color: #ececec;
-   
-    gap: 20px;
-
-}
-
-.fa3{
-    font-size: 150px;
-    color: rgb(31, 31, 57);
-    
-   padding-top: 40px;
-  }
 .wr{
     display: flex;
    
@@ -320,68 +154,8 @@ color: aliceblue;
     background-repeat: no-repeat;
     background-size: cover;
 }
-.wr2{
-    
-    color: #ffffff;
-    height: 1800px;
-    width: 100%;
-    background-image: url(https://images.pexels.com/photos/220118/pexels-photo-220118.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    display: flex;
-   
-    align-items: center;
-    flex-direction: column;
-}
-.content form{
-    width: 100px;
-    padding: 0;
-    background-color: #ececec;
-    margin-top: 20px;
-}
-.content form input{
-    border-radius: 10px;
-    border: none;
-    text-align: center;
-    padding: 5px;
-}
-.content h5{
-    text-decoration: underline;
-}
-  .cont1{
-    background-color:  rgb(255, 255, 255);
-    border: none;
-    padding: 2px;
-    margin: 5px;
-    border-radius: 5px;
-    padding-right: 10px;
-    margin-top: 10px;
-  }
 
   
- 
-  .card p{
-    color: rgb(107, 109, 109);
-    text-align: center;
-
-  }
-  .img img{
-    width:300px;
-    height: 300px;
-    border-radius: 30px;
-    margin: 10px;
-  }
-
-  .cardbox{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    justify-content: space-between;
-  }
-  .cardtext p{
-    color: white;
-  }
 
   .footer {
     background-color: #b5b5b5;
@@ -409,89 +183,10 @@ color: aliceblue;
     margin: 10px 0;
   }
   
-  .logos {
-    text-align: center;
-  }
-  
-  .logo-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .logo {
-    height: 50px;
-    width: auto;
-  }
-  .label{
-    font-size: medium;
-    gap: 10px;
-    display: flex;
 
 
-   
-  }
-.mid{
-    margin: auto;
-    margin-top: 100px;
-    color: #ececec;
-
-}
-.mid p,button{
-    padding-top: 100px;
 
 
-}
-
-.hello{
-    padding: 10px;
-    color: white;
-    padding-left: 100px;
-    font-family: monospace;
-}
-
-
-.white {
-    color: #ffffff;
-    padding: 20px;
-    font-weight: 600;
-    font-size: x-large;
-}
-
-.empty{
-    background-color: #ececec;
-    border: none;
-    padding: 0px;
-}
-
-table, th, td {
-    border: 1px solid black;
-    padding: 3px;
-  }
-  table:hover{
-     cursor: pointer;
-  }
-
-  .contentx1{
-    height: 600px;
-    width: 800px;
-   margin: 20px;
-   box-shadow:0 0 10px rgb(255, 255, 255); 
-    
-   border-radius: 25px;
-   background-color: #ececec;
-   display: flex;
-   justify-content: start;
-   flex-direction: column;
-   align-items: center;
-    gap: 20px;
-
-}
-
-.App {
-    text-align: center;
-}
 .carousel .thumbs-wrapper {
     display: none !important;
   }
@@ -504,23 +199,25 @@ table, th, td {
 
 
 
-  /*****/
+  /**Firstpage***/
 
   .header-banner {
-    background-color: #f8f8f8;
-    height: 60px;
+    height: 70px;
     width: 100%;
   }
- 
+ .flexx{
+  display: flex;
+justify-content: center;
+ }
   .wrapper {
     margin-left: 200px;
     padding: 20px;
     width: 1500px;
     margin: 0 auto;
-    background-color: rgb(161, 10, 35);
   }
   
   .user-greeting {
+    background-color: rgba(207, 132, 186, 0.227);
     text-align: right;
     margin-bottom: 20px;
   }
@@ -557,4 +254,4 @@ table, th, td {
     width: calc(33.333% - 20px);
     box-sizing: border-box;
   }
-  
+  /*******/

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { supabase } from '../api/client';
 import { Link, useNavigate } from 'react-router-dom';
+import './Login.css'; 
 
 const Register = () => {
   const [user, setUser] = useState(null);
@@ -85,113 +86,108 @@ const Register = () => {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
       });
+      
       if (error) throw error;
+      navigate("/complete-profile");
     } catch (error) {
       alert(`Google Sign-Up failed: ${error.message}`);
     }
   };
 
   return (
-    <div>
-      <div className="loginbox">
-        <div className="wr1">
-          <div className="loginbox2">
-            SIGN UP NOW
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div>
-                <input
-                  type="text"
-                  className="log"
-                  placeholder="Enter Your Username"
-                  {...register("username", {
-                    required: "Username is required",
-                  })}
-                />
-                {errors.username && (
-                  <p className="err">{errors.username.message}</p>
-                )}
-              </div>
-              <div>
-                <input
-                  type="text"
-                  className="log"
-                  placeholder="Enter Your Name"
-                  {...register("name", { required: "Name is required" })}
-                />
-                {errors.name && <p className="err">{errors.name.message}</p>}
-              </div>
-              <div>
-                <input
-                  type="email"
-                  className="log"
-                  placeholder="Enter Your Email"
-                  {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /@/,
-                      message: "Please enter a valid email address",
-                    },
-                  })}
-                />
-                {errors.email && <p className="err">{errors.email.message}</p>}
-              </div>
-              <div>
-                <input
-                  type="password"
-                  className="log"
-                  placeholder="Enter Your Password"
-                  {...register("password", {
-                    required: "Password is required",
-                    minLength: {
-                      value: 6,
-                      message: "Password must be at least 6 characters long",
-                    },
-                  })}
-                />
-                {errors.password && (
-                  <p className="err">{errors.password.message}</p>
-                )}
-              </div>
-
-              <div className="label">
-                <input
-                  type="radio"
-                  name="mode"
-                  id="User"
-                  checked={mode === "no"}
-                  onChange={() => setMode("no")}
-                  required
-                />
-                <label htmlFor="User">User</label>
-                <input
-                  type="radio"
-                  name="mode"
-                  id="Admin"
-                  checked={mode === "yes"}
-                  onChange={() => setMode("yes")}
-                  required
-                />
-                <label htmlFor="Admin">Admin</label>
-              </div>
-
-              <button type="submit" className="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Signing up..." : "Sign Up"}
-              </button>
-            </form>
-            <button onClick={handleGoogleSignUp} className="google-button">
-              Sign Up with Google
-            </button>
-            <h6>
-              Already have an account?
-              <br />
-              <Link to="/login" className="log1">
-                Login Here
-              </Link>
-            </h6>
-          </div>
-        </div>
-      </div>
+   <div  className="login-container">
+     <div className="login-box">
+  <h2 className="login-heading">SIGN UP</h2>
+  <form onSubmit={handleSubmit(onSubmit)} className="login-form">
+    <div className="form-group">
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Enter Your Username"
+        {...register("username", {
+          required: "Username is required",
+        })}
+      />
+      {errors.username && <p className="error-message">{errors.username.message}</p>}
     </div>
+    <div>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Enter Your Name"
+        {...register("name", { required: "Name is required" })}
+      />
+      {errors.name && <p className="error-message">{errors.name.message}</p>}
+    </div>
+    <div>
+      <input
+        type="email"
+        className="form-control"
+        placeholder="Enter Your Email"
+        {...register("email", {
+          required: "Email is required",
+          pattern: {
+            value: /@/,
+            message: "Please enter a valid email address",
+          },
+        })}
+      />
+      {errors.email && <p className="error-message">{errors.email.message}</p>}
+    </div>
+    <div>
+      <input
+        type="password"
+        className="form-control"
+        placeholder="Enter Your Password"
+        {...register("password", {
+          required: "Password is required",
+          minLength: {
+            value: 6,
+            message: "Password must be at least 6 characters long",
+          },
+        })}
+      />
+      {errors.password && <p className="error-message">{errors.password.message}</p>}
+    </div>
+    <div className="radio-group">
+      <input
+        type="radio"
+        name="mode"
+        id="User"
+        checked={mode === "no"}
+        onChange={() => setMode("no")}
+        required
+      />
+      <label htmlFor="User">User</label>
+      <input
+        type="radio"
+        name="mode"
+        id="Admin"
+        checked={mode === "yes"}
+        onChange={() => setMode("yes")}
+        required
+      />
+      <label htmlFor="Admin">Admin</label>
+    </div>
+    <button type="submit" className="submit-button" disabled={isSubmitting}>
+      {isSubmitting ? "Signing up..." : "Sign Up"}
+    </button>
+  </form>
+  <button onClick={handleGoogleSignUp} className="google-button">
+    Sign Up with Google
+  </button>
+  <div className="register-link">
+ <span>
+    Already have an account?</span>
+    <br />
+    <Link to="/login" className="register-link-text">
+      Login Here
+    </Link>
+    </div>
+
+</div>
+
+   </div>
   );
 };
 

@@ -129,17 +129,14 @@ function Dashboard() {
   if (!user) {
     return (
       <>
-        <div className="dash1"></div>
-        <div className="wr1">
-          <p className="white">You're not logged in...</p>
-          <Link to="/login">
-            <button className="out">LOGIN</button>
-          </Link>
-          <br />
-          <Link to="/register">
-            <button className="out">SIGN UP</button>
-          </Link>
-        </div>
+        <div className="dash"></div>
+      <div className="message-pop">
+<div>
+<h2> NO SESSION FOUND</h2>
+  <Link to="/login"><button>SIGN IN</button></Link>
+  <Link to="/register"><button >SIGN UP</button></Link>
+</div>
+      </div>
       </>
     );
   }

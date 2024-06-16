@@ -14,7 +14,6 @@ const Admin = () => {
       const { data, error } = await supabase
         .from("events")
         .select("*")
-        .eq("created_by", user.email); // Assuming the events table has a created_by column
       if (error) throw error;
       setEvents(data);
     } catch (error) {
@@ -115,9 +114,13 @@ const Admin = () => {
         {events.length > 0 ? (
           events.map((event) => (
             <div key={event.id} className="event-card">
-              <h4>{event.title}</h4>
-              <p>{event.description}</p>
-              <p>Date: {event.date}</p>
+              <h4>{event.name}</h4>
+              <p>{event.location}</p>
+              <p>{event.time}</p>
+              <p>{event.date}</p>
+              <p>{event.seats}</p>
+              <p>{event.price}</p>
+              
             </div>
           ))
         ) : (

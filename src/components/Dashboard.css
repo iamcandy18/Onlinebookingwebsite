@@ -129,3 +129,31 @@
       width: 100%;
     }
   }
+  .message-pop div{
+display: flex;
+flex-direction: column;
+  }
+  .message-pop div h2{
+   text-align: center;
+   padding: 20px;
+   position: absolute;
+   left: 650px;
+   top: 100px;
+   
+      }
+      .message-pop div button{
+        
+        border: none;
+        margin: 10px;
+        color: black;
+        background-color: #ff2b75;
+        padding: 20px;
+
+        border-radius: 20px;
+           }
+      .message-pop{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 100px;
+      }

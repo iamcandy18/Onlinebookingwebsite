@@ -91,7 +91,7 @@ function Firstpage() {
   return (
     <div>
       <div className="header-banner"></div>
-
+<div className="flexx">
       <div className="wrapper">
 
         <div className="user-greeting">
@@ -122,7 +122,7 @@ function Firstpage() {
           </div>
         </div>
       </div>
-     
+      </div>
       <Footer />
     </div>
   );

@@ -56,7 +56,7 @@ export default function Navbar() {
         <span className="title">EveS</span>
       </Link>
       <div className="right">
-      <Link to="/dashboard">{userInfo?<h3 className="fax">{userInfo.name}</h3>:<></>}</Link>
+      <Link to="/dashboard">{userInfo?<h3 className="name">{userInfo.name}</h3>:<></>}</Link>
         <Link to="/dashboard">
         
           <i className="fa fa-bars" aria-hidden="true"></i>

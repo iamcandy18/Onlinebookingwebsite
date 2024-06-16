@@ -1,4 +1,4 @@
-/* Login.css */
+
 
 .login-container {
     min-height: 100vh;
@@ -91,3 +91,7 @@
     background-color: #f94d86;
   }
   
+  .radio-group{
+    display: flex;
+    gap: 5px;
+  }
