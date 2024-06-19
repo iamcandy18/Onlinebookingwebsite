@@ -254,4 +254,10 @@ justify-content: center;
     width: calc(33.333% - 20px);
     box-sizing: border-box;
   }
+
+  .event-card img{
+    height: 250px;
+    width: 250px;
+    border-radius: 20px;
+  }
   /*******/

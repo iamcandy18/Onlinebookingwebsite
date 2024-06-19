@@ -8,9 +8,9 @@ import Dashboard from "./components/Dashboard";
 import Firstpage from "./components/Firstpage";
 import Admin from "./components/Admin/Admin";
 import BookingPage from "./components/Booking";
-import Attendee from "./components/booking/Attendee";
 import Add from "./components/Admin/Add";
 import CompleteProfile from "./components/Auth/Completeprofile";
+import Edit from "./components/Admin/Edit";
 function App() {
   return (
     <Routes>
@@ -22,8 +22,9 @@ function App() {
       <Route path="/dashboard" index element ={<Dashboard/>}/>
       <Route path="/admin" index element ={<Admin/>}/>
       <Route path="/admin/add" index element ={<Add/>}/>
+
+      <Route path="/admin/edit" index element ={<Edit/>}/>
       <Route path="/booking" index element ={<BookingPage/>}/>
-      <Route path="/booking/attendee" index element ={<Attendee/>}/>
 
       <Route path="/complete-profile" index element ={<CompleteProfile/>}/>
       </Route>

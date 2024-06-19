@@ -14,6 +14,7 @@ const Admin = () => {
       const { data, error } = await supabase
         .from("events")
         .select("*")
+        .eq('email', user.email);
       if (error) throw error;
       setEvents(data);
     } catch (error) {
@@ -113,6 +114,7 @@ const Admin = () => {
         <h3>Your Events</h3>
         {events.length > 0 ? (
           events.map((event) => (
+            <Link to="/admin/edit" state={{event}}>
             <div key={event.id} className="event-card">
               <h4>{event.name}</h4>
               <p>{event.location}</p>
@@ -122,6 +124,7 @@ const Admin = () => {
               <p>{event.price}</p>
               
             </div>
+            </Link>
           ))
         ) : (
           <p>No events found</p>

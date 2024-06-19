@@ -110,21 +110,7 @@ function Dashboard() {
     }
   };
 
-  const cancelBooking = async (bookingId) => {
-    try {
-      const { error } = await supabase
-        .from('booking')
-        .delete()
-        .eq('id', bookingId);
-      if (error) {
-        throw error;
-      }
-      setBookings((prev) => prev.filter((booking) => booking.id !== bookingId));
-      alert('Booking canceled successfully');
-    } catch (error) {
-      console.error('Error canceling booking:', error.message);
-    }
-  };
+ 
 
   if (!user) {
     return (
