@@ -6,7 +6,7 @@ import './Dashboard.css';
 
 function Dashboard() {
   const [user, setUser] = useState(null);
-  const [bookings, setBookings] = useState([]);
+  const [booking, setBooking] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [nameInput, setNameInput] = useState("");
@@ -51,25 +51,7 @@ function Dashboard() {
     fetchUserInfo();
   }, [user]);
 
-  useEffect(() => {
-    if (!user) return;
-    
-    async function fetchUserBookings() {
-      try {
-        const { data, error } = await supabase
-          .from('booking')
-          .select('id, user_email, event_name, event_date, event_location, ticket_number, etime')
-        if (error) {
-          throw error;
-        }
-        setBookings(data);
-      } catch (error) {
-        console.error('Error fetching user bookings:', error.message);
-      }
-    }
-    fetchUserBookings();
-  }, [user]);
-
+  
   useEffect(() => {
     if (userInfo?.admin === "yes") {
       navigate("/admin");
@@ -110,7 +92,18 @@ function Dashboard() {
     }
   };
 
- 
+  async function fetchEvents() {
+    try {
+      const { data, error } = await supabase
+        .from("booking")
+        .select("*")
+        .eq('email', user.email);
+      if (error) throw error;
+      setBooking(data);
+    } catch (error) {
+      console.error("Error fetching events:", error.message);
+    }
+  }
 
   if (!user) {
     return (
@@ -173,46 +166,31 @@ function Dashboard() {
        
 
         <div className="bookings">
-          <button className="btn-bookings">Your Present Bookings</button>
-          <p>Tap to know the ticket number or cancel your booking</p>
-          <table className="bookings-table">
-            <thead>
-              <tr>
-                <th>Email</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Event</th>
-                <th>Location</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bookings.map((booking) => 
-                booking.user_email === user.email && (
-                  <tr key={booking.id}>
-                    <td>{booking.user_email}</td>
-                    <td>{booking.event_date}</td>
-                    <td>{booking.etime}</td>
-                    <td>{booking.event_name}</td>
-                    <td>{booking.event_location}</td>
-                    <td>
-                      <div className="actions">
-                        <button className="btn-action" onClick={() => alert(`Ticket Number: ${booking.ticket_number}`)}>
-                          Ticket Number
-                        </button>
-                        <button className="btn-action" onClick={() => cancelBooking(booking.id)}>
-                          Cancel
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                )
-              )}
-            </tbody>
-          </table>
+          
+        <div className="events">
+        <h3>Present Events</h3>
+        {booking.length > 0 ? (
+          booking.map((event) => (
+            
+            <div key={event.id} className="event-card">
+              <h4>{event.name}</h4>
+              <p>{event.location}</p>
+              <p>{event.time}</p>
+              <p>{event.date}</p>
+              <p>{event.seats}</p>
+              <p>{event.price}</p>
+              
+            </div>
+            
+          ))
+        ) : (
+          <p>No events found</p>
+        )}
+      </div>
+    </div> 
         </div>
       </div>
-    </div>
+   
   );
 }
 

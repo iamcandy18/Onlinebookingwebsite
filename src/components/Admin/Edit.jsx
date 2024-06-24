@@ -11,6 +11,7 @@ const Edit = () => {
   const [name, setName] = useState(event.name);
   const [category, setCategory] = useState(event.category);
   const [eventLocation, setEventLocation] = useState(event.location);
+  const [dateto, setDateto] = useState(event.dateto);
   const [date, setDate] = useState(event.date);
   const [time, setTime] = useState(event.time);
   const [price, setPrice] = useState(event.price);
@@ -29,6 +30,7 @@ const [img,setImg]=useState(event.img);
         .update({
           name,
           date,
+          dateto,
           location: eventLocation,
           description,
           time,
@@ -143,6 +145,19 @@ const [img,setImg]=useState(event.img);
                 className="edit-input"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
+              />
+            ) : (
+              date
+            )}
+          </p>
+          <p>
+            <strong>Date upto:</strong>{" "}
+            {isEditing ? (
+              <input
+                type="date"
+                className="edit-input"
+                value={dateto}
+                onChange={(e) => setDateto(e.target.value)}
               />
             ) : (
               date

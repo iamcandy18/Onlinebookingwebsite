@@ -2,59 +2,75 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { supabase } from '../api/client';
 import { useNavigate } from 'react-router-dom';
-import './Login.css';
+
 
 const CompleteProfile = () => {
-  const [mode, setMode] = useState("no");
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [user, setUser] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
-  
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      if (error) {
-        console.error('Error fetching user:', error.message);
-      } else {
-        setUser(data.user);
-      }
-    };
 
-    fetchUser();
-  }, []);
+  useEffect(() => {
+    async function getUserData() {
+      try {
+        const { data, error } = await supabase.auth.getUser();
+        if (error) {
+          throw error;
+        }
+        if (data?.user) {
+          setUser(data.user);
+        } else {
+          navigate("/login");
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error.message);
+        navigate("/login");
+      }
+    }
+
+    getUserData();
+  }, [navigate]);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = async (data) => {
     const { username, name } = data;
     setIsSubmitting(true);
     try {
-      if (!user) throw new Error("No user logged in");
+      const { email } = user;
 
-      await saveUserInfo({ email: user.email, username, name, mode });
+      const { error } = await supabase
+        .from("newusers")
+        .upsert([{ email, username, name, admin: "no" }]);
+
+      if (error) {
+        throw error;
+      }
+
+      alert("Profile completed successfully!");
       navigate("/dashboard");
     } catch (error) {
       setIsSubmitting(false);
-      alert(`Saving profile failed: ${error.message}`);
+      alert(`Profile completion failed: ${error.message}`);
     }
   };
 
-  const saveUserInfo = async (user) => {
-    const { email, username, name, mode } = user;
-    const { data, error } = await supabase
-      .from("newusers")
-      .insert([{ username, email, name, Admin: mode }]);
-
-    if (error) {
-      console.error("Error saving user info:", error.message);
-    } else {
-      console.log("User info saved successfully:", data);
-    }
-  };
+  if (!user) {
+    return (
+      <div className="loading">
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <h2 className="login-heading">Complete Your Profile</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="login-form">
+    <div className="complete-profile-container">
+      <div className="complete-profile-box">
+        <h2 className="complete-profile-heading">Complete Your Profile</h2>
+        <form onSubmit={handleSubmit(onSubmit)} className="complete-profile-form">
           <div className="form-group">
             <input
               type="text"
@@ -66,7 +82,7 @@ const CompleteProfile = () => {
             />
             {errors.username && <p className="error-message">{errors.username.message}</p>}
           </div>
-          <div>
+          <div className="form-group">
             <input
               type="text"
               className="form-control"
@@ -75,28 +91,8 @@ const CompleteProfile = () => {
             />
             {errors.name && <p className="error-message">{errors.name.message}</p>}
           </div>
-          <div className="radio-group">
-            <input
-              type="radio"
-              name="mode"
-              id="User"
-              checked={mode === "no"}
-              onChange={() => setMode("no")}
-              required
-            />
-            <label htmlFor="User">User</label>
-            <input
-              type="radio"
-              name="mode"
-              id="Admin"
-              checked={mode === "yes"}
-              onChange={() => setMode("yes")}
-              required
-            />
-            <label htmlFor="Admin">Admin</label>
-          </div>
           <button type="submit" className="submit-button" disabled={isSubmitting}>
-            {isSubmitting ? "Saving..." : "Save"}
+            {isSubmitting ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>

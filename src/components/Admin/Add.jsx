@@ -48,6 +48,7 @@ const Add = () => {
           img: imageUrl,
           price,
           description,
+          email: userInfo.email,
         },
       ]);
       if (error) throw error;
