@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { supabase } from "./api/client";
 import './BookingPage.css';
@@ -11,8 +11,9 @@ function BookingPage() {
   const [selectedDate, setSelectedDate] = useState(event.date);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
-  const [userInfo,setUserInfo]=useState();
+  const [userInfo, setUserInfo] = useState();
   const [success, setSuccess] = useState(null);
+  const [ticket, setTicket] = useState();
 
   useEffect(() => {
     async function getUserData() {
@@ -51,20 +52,28 @@ function BookingPage() {
     setAttendees(newAttendees);
   };
 
+  const generateTicketNo = () => {
+    return `TICKET-${Math.floor(100000 + Math.random() * 900000)}`;
+  };
+
   const handleBooking = async () => {
     setIsSubmitting(true);
     setError(null);
     setSuccess(null);
+    const ticketNo = generateTicketNo();
+
     try {
       const { data, error } = await supabase
         .from('booking')
         .insert([
           {
-            eventid: event.id,
+            
             name: event.name,
             date: selectedDate,
-            attendee: JSON.stringify(attendees),
-            seat: seatBook,
+            location: event.location,
+            ticketno: ticketNo,
+            seatno: seatBook,
+            attendee: attendees,
             email: userInfo.email,
           }
         ]);
@@ -76,6 +85,7 @@ function BookingPage() {
       setSuccess("Booking successful!");
       setSeatBook(0);
       setAttendees([]);
+      setTicket(ticketNo);
     } catch (error) {
       setError("Booking failed. Please try again.");
     } finally {
@@ -139,6 +149,7 @@ function BookingPage() {
           </button>
           {error && <p className="error">{error}</p>}
           {success && <p className="success">{success}</p>}
+          {ticket && <p className="ticket">Your Ticket No: {ticket}</p>}
         </div>
       </div>
     </div>
@@ -146,4 +157,3 @@ function BookingPage() {
 }
 
 export default BookingPage;
-

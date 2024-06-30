@@ -38,6 +38,7 @@ const [img,setImg]=useState(event.img);
           seats,
           img,
           category,
+          
         })
         .eq("id", event.id);
       if (error) {
